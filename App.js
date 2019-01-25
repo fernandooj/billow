@@ -5,7 +5,7 @@
  * @format
  * @flow
  */
-
+import MapView from 'react-native-maps'; 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import firebase from 'react-native-firebase';
@@ -42,10 +42,23 @@ export default class App extends Component{
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container1}>
+        <MapView
+          style={styles.map}
+          region={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}
+        >
+        </MapView>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.container}>
+        </View>
+
       </View>
     );
   }
@@ -53,6 +66,16 @@ export default class App extends Component{
 
 const styles = StyleSheet.create({
   container: {
+    ...StyleSheet.absoluteFillObject,
+    height: 400,
+    width: 400,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  container1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
