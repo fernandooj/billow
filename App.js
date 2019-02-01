@@ -4,12 +4,21 @@
  *
  * @format
  * @flow
- */
-import MapView from 'react-native-maps'; 
+ */ 
+
+import QRCodeScanner from 'react-native-qrcode-scanner';
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, AppRegistry, TouchableOpacity, Dimensions, Modal} from 'react-native';
 import firebase from 'react-native-firebase';
 import ImagePicker from 'react-native-image-picker';
+import MapView from 'react-native-maps'; 
+import { RNCamera, FaceDetector } from 'react-native-camera';
+import Share from 'react-native-share';
+import Toast from 'react-native-simple-toast';
+import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+
+import Pdf from 'react-native-pdf';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -20,85 +29,86 @@ const instructions = Platform.select({
  
 export default class App extends Component{
   
-
-  async componentWillMount(){
-    const fcmToken = await firebase.messaging().getToken();
-		if (fcmToken) {
-      console.log(fcmToken)
-    }
-
-    try {
-        await firebase.messaging().requestPermission();
-        // User has authorised
-    } catch (error) {
-        // User has rejected permissions
-    }
-
-    const enabled = await firebase.messaging().hasPermission();
-		if (enabled) {
-      console.log(enabled)
-		} else {
-      console.log("not enabled")
-		}
-  }
-  camera(){
- 
-    const options = {
-      title: 'Select Avatar',
-      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    
-    /**
-     * The first arg is the options object for customization (it can also be null or omitted for default options),
-     * The second arg is the callback which sends object: response (more info in the API Reference)
-     */
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-    
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const source = { uri: response.uri };
-    
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-    
-        this.setState({
-          avatarSource: source,
-        });
-      }
-    });
+tomalo(){
+  DocumentPicker.show({
+    filetype: [DocumentPickerUtil.pdf()],
+  },(error,res) => {
+    // Android
+    console.log(
+       "fer"
+    );
+  });
+  
+}
+   
+  onSuccess(e) {
+    console.log(e)
+    // Linking
+    //   .openURL(e.data)
+    //   .catch(err => console.error('An error occured', err));
   }
   render() {
+    const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:true};
+
     return (
-      
-         
-        <Button style={styles.welcome}  title="Learn More" onPress={()=>this.camera()}>Welcome to React Native!</Button>
-         
+      <View style={styles.container1}>
+      <QRCodeScanner
+        onRead={this.onSuccess.bind(this)}
+        topContent={
+          <Text style={styles.centerText}>
+            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
+          </Text>
+        }
+        bottomContent={
+          <TouchableOpacity style={styles.buttonTouchable} onPress={()=>this.tomalo()}>
+            <Text style={styles.buttonText}>OK. Got it!</Text>
+          </TouchableOpacity>
+        }
+      />
+      <Pdf
+		             source={source}
+		            onLoadComplete={(numberOfPages,filePath)=>{
+		                console.log(`number of pages: ${numberOfPages}`);
+		            }}
+		            onPageChanged={(page,numberOfPages)=>{
+		                console.log(`current page: ${page}`);
+		            }}
+		            onError={(error)=>{
+		                console.log(error);
+		            }}
+		            style={styles.pdf}
+		        />
+        </View>
+ 
     );
   }
 }
 
 const styles = StyleSheet.create({
- 
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    height: 400,
+    width: 400,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
   container1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  pdf: {
+    flex:1,
+    width:Dimensions.get('window').width,
+},
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    padding: 10,
+    margin: 10,
   },
   instructions: {
     textAlign: 'center',

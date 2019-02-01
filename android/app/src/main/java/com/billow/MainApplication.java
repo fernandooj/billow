@@ -3,8 +3,13 @@ package com.billow;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.wonday.pdf.RCTPdfView;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
+import org.reactnative.camera.RNCameraPackage;
+import cl.json.RNSharePackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
-import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -26,8 +31,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTPdfView(),
+            new RNFetchBlobPackage(),
+            new ReactNativeDocumentPicker(),
+            new RNCameraPackage(),
+            new RNSharePackage(),
+            new MapsPackage(),
             new ImagePickerPackage(),
-            new RNAndroidLocationEnablerPackage(),
             new RNFirebasePackage()
       );
     }

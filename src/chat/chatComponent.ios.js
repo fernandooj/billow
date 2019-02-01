@@ -6,7 +6,6 @@ import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {style} from '../chat/style'
 import update from 'react-addons-update';
 import moment from 'moment'
-import ImagePicker from 'react-native-image-picker';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Lightbox from 'react-native-lightbox';

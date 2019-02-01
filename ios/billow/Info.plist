@@ -37,27 +37,25 @@
 			</dict>
 		</dict>
 	</dict>
-  <key>NSCameraUsageDescription</key>
-  <string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
-  <key>NSContactsUsageDescription</key>
-  <string>Necesitamos acceder a tus contactos para que puedas invitar a tus amigos a descargar la aplicación o para agregarlos a tus planes</string>
-  <key>NSLocationUsageDescription</key>
-  <string>Activa las notificaciones para que estés al tanto de lo qué pasa en tus planes. Pueden incluir globos, alertas y sonidos que se pueden modificar en configuraciones.</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Activa las notificaciones para que estés al tanto de lo qué pasa en tus planes. Pueden incluir globos, alertas y sonidos que se pueden modificar en configuraciones.</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>Your message to user when the microsphone is accessed for the first time</string>
-  <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
-  <key>UIAppFonts</key>
-  <array>
-    <string>FontAwesome.ttf</string>
-    <string>Futura-CondensedLight.ttf</string>
-  </array>
+	<key>NSCameraUsageDescription</key>
+	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Necesitamos acceder a tus contactos para que puedas invitar a tus amigos a descargar la aplicación o para agregarlos a tus planes</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Activa las notificaciones para que estés al tanto de lo qué pasa en tus planes. Pueden incluir globos, alertas y sonidos que se pueden modificar en configuraciones.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microsphone is accessed for the first time</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontAwesome.ttf</string>
+		<string>Futura-CondensedLight.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
