@@ -5,7 +5,7 @@ import Image from 'react-native-scalable-image';
 import axios from 'axios';
 import Icon from 'react-native-fa-icons';
 // import {GoogleSignin} from 'react-native-google-signin';
- 
+import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 
 import firebase from 'react-native-firebase';
 import { registerAppListener} from "../push/Listeners";
@@ -47,7 +47,76 @@ export default class LoginComponent extends Component{
 		const {navigate} = this.props.navigation 	
 		const {token} = this.state
 		if (e===1) {
-			 
+			FBLoginManager.loginWithPermissions(["email"], function(error, data){
+				/////////////////////////////////////////////    SAVE INFO IF IS ANDROID PLATFORM /////////////////////////////////////////////////////////
+				if(Platform.OS === 'android'){
+					if (!error) {
+						let result = JSON.parse(data.profile);
+						let accessToken1 = null
+						let idUser1 = result.id
+						let name1 = result.name
+						let photo1 = result.picture.data.url
+						let email1 = result.email
+						let tipo1 = 'facebook'
+						let acceso = 'suscriptor'
+						console.log({accessToken:accessToken1, idUser:idUser1, nombre:name1, photo:photo1, email:email1, tipo:tipo1, tokenPhone:token})
+						axios.post('/x/v1/user/facebook', {accessToken:accessToken1, idUser:idUser1, nombre:name1, photo:photo1, email:email1, username:email1, tipo:tipo1, acceso, tokenPhone:token})
+						.then((e)=>{
+							console.log(e.data)
+							if (e.data.status==='SUCCESSNOEXISTE') {
+								saveInfo(e.data.user)
+								navigate('Terminos', {redes:true}) 
+							}else{
+								saveInfo(e.data.user)
+								navigate('misPlanes') 
+							}
+							// if (e.data.code==1) {
+							// 	if (e.data.user.categorias.length>1) {
+							// 		saveInfo(e.data.user)
+							// 		navigate('inicio') 
+							// 	}else{
+							// 		saveInfo(e.data.user)
+							// 		navigate('editPerfil2') 
+							// 	}
+							// }
+						})
+						.catch((err)=>{
+							console.log(err)
+						})
+					} else {
+						console.log("Error: ", error);
+					}
+				}else{
+					if (!error) {
+						fetch(`https://graph.facebook.com/v2.12/me?fields=id,name,birthday,email,gender,picture{url}&access_token=${data.credentials.token}`)
+				        .then((response) => response.json())
+				        .then((result) => {
+				        	let accessToken1 = null
+							let idUser1 = result.id
+							let name1 = result.name
+							let photo1 = result.picture.data.url
+							let email1 = result.email
+							let tipo1 = 'facebook'
+							let acceso = 'suscriptor'
+							console.log({accessToken:accessToken1, idUser:idUser1, nombre:name1, photo:photo1, email:email1, tipo:tipo1, tokenPhone:token})
+							axios.post('/x/v1/user/facebook', {accessToken:accessToken1, idUser:idUser1, nombre:name1, photo:photo1, email:email1, username:email1, tipo:tipo1, acceso, tokenPhone:token})
+							.then((e)=>{
+								console.log(e.data.user)
+								if (e.data.status==='SUCCESSNOEXISTE') {
+									saveInfo(e.data.user)
+									navigate('Terminos', {redes:true}) 
+								}else{
+									saveInfo(e.data.user)
+									navigate('misPlanes') 
+								}
+							})
+				        })
+				        .catch(() => {
+				          console.log('ERROR')
+				        })
+				    }
+				}
+			})
 			 	
 		}else{
 			// GoogleSignin.signIn()

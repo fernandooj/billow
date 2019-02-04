@@ -5,7 +5,7 @@ import axios from 'axios'
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import Toast 			 from 'react-native-simple-toast';
 import moment 					  from 'moment'
-
+import firebase from 'react-native-firebase';
 import CabezeraComponent from '../cabezeraFooter/cabezeraComponent'
 import FooterComponent 	 from '../cabezeraFooter/footerComponent'
 import GuiaInicio 	 	 from '../guia_inicio/guia_inicio'
@@ -134,6 +134,14 @@ export default class homeComponent extends Component{
 	      	)
 		  }
 		
+		const enabled = await firebase.messaging().hasPermission();
+		if (enabled) {
+			  alert(enabled)
+			} else {
+				console.log("sin permiso de notificacion")
+				this._getPermission();
+				// user doesn't have permission
+		}
 
 		Keyboard.dismiss()
 	}
@@ -147,7 +155,7 @@ export default class homeComponent extends Component{
 		this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
 			console.log(RemoteMessage)
 		});
-
+		 
 
 	    // FCM.getInitialNotification().then(notif => {
 	    	
@@ -170,6 +178,14 @@ export default class homeComponent extends Component{
 	    // } 
 	    this.setState({cargando:false})
 	}
+	_getPermission = () => {
+		firebase.messaging()
+			.requestPermission()
+			.catch(error => {
+				// User has rejected permissions
+				this._getPermission();
+			});
+	};
 	componentWillUnmount() {
 		this.messageListener();
 	}
