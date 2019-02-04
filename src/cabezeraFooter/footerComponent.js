@@ -5,7 +5,7 @@ import axios from 'axios'
 import Toast 			 from 'react-native-simple-toast';
 import SocketIOClient from 'socket.io-client';
 import {URL} from '../../App.js'
-import FCM  from "react-native-fcm";
+
 export default class CabezeraComponent extends Component{
 	constructor(props) {
 	  super(props);
@@ -101,7 +101,7 @@ export default class CabezeraComponent extends Component{
 	 	badge = badge-newBadge.length
 
 	 	////////////////////////////////////////////////////////////  actualizo el numero del badge
-	  	FCM.setBadgeNumber(badge);  
+	  	// FCM.setBadgeNumber(badge);  
 
 
 		try {

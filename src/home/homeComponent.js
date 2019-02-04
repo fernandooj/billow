@@ -5,24 +5,18 @@ import axios from 'axios'
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import Toast 			 from 'react-native-simple-toast';
 import moment 					  from 'moment'
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
+
 import CabezeraComponent from '../cabezeraFooter/cabezeraComponent'
 import FooterComponent 	 from '../cabezeraFooter/footerComponent'
 import GuiaInicio 	 	 from '../guia_inicio/guia_inicio'
-
+import type { RemoteMessage } from 'react-native-firebase';
 
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
-import FCM, {NotificationActionType} from "react-native-fcm";
-import {registerKilledListener, registerAppListener} from "../push/Listeners";
+import {registerAppListener} from "../push/Listeners";
 import UltimaVersionComponent from '../ultimaVersion/ultimaVersion'
 import {URL}  from '../../App.js';
 
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-TRACKER.trackScreenView("Home");
+ 
 
 const KEYS_TO_FILTERS = ['nombre', 'lugar']
 const {width, height} = Dimensions.get('window')
@@ -31,7 +25,7 @@ const SCREEN_WIDTH = width
 const ASPECT_RATIO = width / height
 const LATITUD_DELTA = 0.092
 const LONGITUDE_DELTA  = LATITUD_DELTA * ASPECT_RATIO
-registerKilledListener();
+
 export default class homeComponent extends Component{
 	constructor(props){
 		super(props);
@@ -150,29 +144,35 @@ export default class homeComponent extends Component{
 		const {navigation} = this.props
 	    registerAppListener(navigation);
 	    
+		this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
+			console.log(RemoteMessage)
+		});
 
-	    FCM.getInitialNotification().then(notif => {
+
+	    // FCM.getInitialNotification().then(notif => {
 	    	
-	     	console.log({props:this.props, notif})
-			this.setState({
-				initNotif: notif
-			})
+	    //  	console.log({props:this.props, notif})
+		// 	this.setState({
+		// 		initNotif: notif
+		// 	})
 
-			if(notif && navigation.state.routeName=='Home'){
-				let id = notif.parameter
-				this.props.navigation.navigate(notif.targetScreen, id)
-				console.log(notif)
-			}
-	    });
+		// 	if(notif && navigation.state.routeName=='Home'){
+		// 		let id = notif.parameter
+		// 		this.props.navigation.navigate(notif.targetScreen, id)
+		// 		console.log(notif)
+		// 	}
+	    // });
 
-	    try{
-	      let result = await FCM.requestPermissions({badge: true, sound: true, alert: true});
-	    } catch(e){
-	      console.error(e);
-	    } 
+	    // try{
+	    //   let result = await FCM.requestPermissions({badge: true, sound: true, alert: true});
+	    // } catch(e){
+	    //   console.error(e);
+	    // } 
 	    this.setState({cargando:false})
 	}
-	
+	componentWillUnmount() {
+		this.messageListener();
+	}
 	getRow(){
 		const {navigate} = this.props.navigation
 		const {opacity, top, deg, translate, cargando, cargado, filteredData, searchTerm, showComponents, inicio, final} = this.state

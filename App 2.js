@@ -14,8 +14,8 @@ import insertCodeComponent         from './src/registro/insertCodeComponent';
 import editPerfilComponent         from './src/editPerfil/editPerfilComponent';
 import editPerfilComponent1        from './src/editPerfil/editPerfilComponent1';
 import editPerfilComponent2        from './src/editPerfil/editPerfilComponent2';
-import createPlanComponent         from './src/createPlan/createPlanComponent';
 import MisPlanesComponent          from './src/misPlanes/misPlanesComponent';
+import createPlanComponent         from './src/createPlan/createPlanComponent';
 import ChatComponentAndroid        from './src/chat/chatComponent.android';
 import ChatComponentIos            from './src/chat/chatComponent.ios';
 import ItemComponent               from './src/item/itemComponent';
@@ -97,9 +97,8 @@ export default class App extends Component<{}> {
   render() {
    const {google, local} = this.state
    console.log(local)
-   
    const NavigationApp = StackNavigator({
-      Home               : {screen: local===1 ?MisPlanesComponent :local===0 ?editPerfilComponent :LoginComponent },
+      Home               : {screen: local===1 ?MisPlanesComponent :local===0 ?editPerfilComponent :MisPlanesComponent },
       Login              : {screen: LoginComponent },
       Registro           : {screen: RegistroComponent },
       insertCode         : {screen: insertCodeComponent },
@@ -107,31 +106,31 @@ export default class App extends Component<{}> {
       editPerfil1        : {screen: editPerfilComponent1 },
       editPerfil2        : {screen: editPerfilComponent2 },
       inicio             : {screen: homeComponent },
-      createPlan         : {screen: createPlanComponent },
-      misPlanes          : {screen: MisPlanesComponent },
-      chat               : {screen: Platform.OS==='android' ?ChatComponentAndroid :ChatComponentIos},
-      item               : {screen: ItemComponent },
-      ajustes            : {screen: ajustesComponent },
-      ajustesAmigos      : {screen: ajustesAmigosComponent },
-      pago               : {screen: pagoComponent },
-      pagoDeuda          : {screen: pagoDeudaComponent },
-      encuesta           : {screen: encuestaComponent },
-      notificacion       : {screen: notificacionComponent },
-      wallet             : {screen: walletComponent },
-      perfil             : {screen: perfilComponent },
-      profile            : {screen: profileComponent },
-      editPassword       : {screen: EditPasswordComponent },
-      insertCode2        : {screen: insertCodeComponent2 },
-      nuevoPassword      : {screen: nuevoPasswordComponent },
-      infoPlan           : {screen: infoPlanComponent },
-      costoPlan          : {screen: costoPlanComponent },
-      medioPago          : {screen: medioPagoComponent },
-      planesPublicos     : {screen: planesPublicosComponent },
-      facturacion        : {screen: facturacionComponent },
       Terminos           : {screen: TerminosComponent },
-      detallePlanPublico : {screen: detallePlanPublicoComponent },
-      importar           : {screen: importarComponent },
-      contacto           : {screen: contactoComponent },
+      // createPlan         : {screen: createPlanComponent },
+      // misPlanes          : {screen: MisPlanesComponent },
+      // chat               : {screen: Platform.OS==='android' ?ChatComponentAndroid :ChatComponentIos},
+      // item               : {screen: ItemComponent },
+      // ajustes            : {screen: ajustesComponent },
+      // ajustesAmigos      : {screen: ajustesAmigosComponent },
+      // pago               : {screen: pagoComponent },
+      // pagoDeuda          : {screen: pagoDeudaComponent },
+      // encuesta           : {screen: encuestaComponent },
+      // notificacion       : {screen: notificacionComponent },
+      // wallet             : {screen: walletComponent },
+      // perfil             : {screen: perfilComponent },
+      // profile            : {screen: profileComponent },
+      // editPassword       : {screen: EditPasswordComponent },
+      // insertCode2        : {screen: insertCodeComponent2 },
+      // nuevoPassword      : {screen: nuevoPasswordComponent },
+      // infoPlan           : {screen: infoPlanComponent },
+      // costoPlan          : {screen: costoPlanComponent },
+      // medioPago          : {screen: medioPagoComponent },
+      // planesPublicos     : {screen: planesPublicosComponent },
+      // facturacion        : {screen: facturacionComponent },
+      // detallePlanPublico : {screen: detallePlanPublicoComponent },
+      // importar           : {screen: importarComponent },
+      // contacto           : {screen: contactoComponent },
    },{ headerMode: 'none'})
     let num = Math.floor(Math.random() * 5);
     if (local==null) {

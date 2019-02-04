@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import {
-  Animated, YellowBox,Platform,
-  Easing, StyleSheet, Text, View, Image, Dimensions, ImageBackground, AsyncStorage
-} from 'react-native'
+import {Animated, YellowBox,Platform, Easing, StyleSheet, Text, View, Image, Dimensions, ImageBackground, AsyncStorage } from 'react-native'
 import axios                  from 'axios' 
-import { StackNavigator } from 'react-navigation'
-YellowBox.ignoreWarnings(['Remote debugger']);
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import homeComponent               from './src/home/homeComponent';
 import LoginComponent              from './src/login/loginComponent';
 import RegistroComponent           from './src/registro/registroComponent';
@@ -39,6 +35,7 @@ import planesPublicosComponent     from './src/planesPublicos/planesPublicosComp
 import detallePlanPublicoComponent from './src/planesPublicos/detallePlanPublicoComponent';
 import importarComponent           from './src/importarContactos/importarContactos';
 import contactoComponent           from './src/contacto/contactoComponent';
+YellowBox.ignoreWarnings(['Remote debugger']);
 
 
 
@@ -98,7 +95,7 @@ export default class App extends Component<{}> {
    const {google, local} = this.state
    console.log(local)
    
-   const NavigationApp = StackNavigator({
+   const NavigationApp = createBottomTabNavigator({
       Home               : {screen: local===1 ?MisPlanesComponent :local===0 ?editPerfilComponent :LoginComponent },
       Login              : {screen: LoginComponent },
       Registro           : {screen: RegistroComponent },

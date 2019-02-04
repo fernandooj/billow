@@ -8,14 +8,6 @@ import {style} from '../ajustes/style'
 import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {PagedContacts} from 'react-native-paged-contacts';
 let pg = new PagedContacts();
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-import {URL}  from '../../App.js';
-TRACKER.trackScreenView("importar");
 
 
 const KEYS_TO_FILTERS = ['nombre', 'telefono']

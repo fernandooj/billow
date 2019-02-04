@@ -7,13 +7,7 @@ import {style} from '../ajustes/style'
 import CabezeraComponent 	  from './cabezera.js'
 import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {URL}  from '../../App.js';
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-TRACKER.trackScreenView("ajustesAmigos");
+
 const KEYS_TO_FILTERS = ['nombre', 'username']
 export default class ajustesAmigosComponent extends Component{
 	state={

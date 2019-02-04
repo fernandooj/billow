@@ -6,12 +6,12 @@ import axios from 'axios';
 import Icon from 'react-native-fa-icons';
 // import {GoogleSignin} from 'react-native-google-signin';
  
-import FCM, {NotificationActionType} from "react-native-fcm";
-import {registerKilledListener, registerAppListener} from "../push/Listeners";
+
+import firebase from 'react-native-firebase';
+import { registerAppListener} from "../push/Listeners";
 import {PagedContacts} from 'react-native-paged-contacts';
 let pg = new PagedContacts(); 
  
-registerKilledListener();
 export default class LoginComponent extends Component{
 	constructor(props) {
 	 super(props);
@@ -120,29 +120,21 @@ export default class LoginComponent extends Component{
 	async componentDidMount(){
 	    registerAppListener(this.props.navigation);
 
-	    try{
-	      let result = await FCM.requestPermissions({badge: true, sound: true, alert: true});
-	    } catch(e){
-	      console.error(e);
-	    }
-
-	    FCM.getFCMToken().then(token => {
-	    	this.setState({token: token || ""})
-	    	console.log(token)
-	    });
-
-	    if(Platform.OS === 'ios'){
-	      FCM.getAPNSToken().then(token => {
-	        console.log("APNS TOKEN (getFCMToken)", token);
-	          
-	      });
-	    }
+	    const enabled = await firebase.messaging().hasPermission();
+		if (enabled) {
+			console.log(enabled)
+		} else {
+			console.log("sin permiso para acceder")
+		}
+		const token = await firebase.messaging().getToken();
+	    console.log(token)
+		this.setState({token})
 
 	}
 	 
 	render(){
 		const {navigate} = this.props.navigation
-		const {showPassword} = this.state
+		const {showPassword, username, password, token} = this.state
 		const {num} = this.props.screenProps
 		console.log(num)
 		return(
@@ -159,7 +151,7 @@ export default class LoginComponent extends Component{
 					<TextInput
 				        style={[style.input, style.familia]}
 				        onChangeText={(username) => this.setState({username})}
-				        value={this.state.username}
+				        value={username}
 				        underlineColorAndroid='transparent'
 	           			placeholder="Email / Telefono"
 	           			placeholderTextColor='#8F9093' 
@@ -170,14 +162,14 @@ export default class LoginComponent extends Component{
 					<TextInput 
 				        style={[style.input, style.familia]}
 				        onChangeText={(password) => this.setState({password})}
-				        value={this.state.password}
+				        value={password}
 				        underlineColorAndroid='transparent'
 	           			placeholder="Contraseña"
 	           			placeholderTextColor="#8F9093" 
 	           			secureTextEntry={showPassword ?false :true}
 	           			autoCapitalize = 'none'
 				    />
-				    <TouchableOpacity onPress={()=>this.setState({showPassword:!this.state.showPassword})} style={style.BtniconPass}> 
+				    <TouchableOpacity onPress={()=>this.setState({showPassword:!showPassword})} style={style.BtniconPass}> 
 				    	 <Icon name={showPassword ?'eye-slash' :'eye'} allowFontScaling style={style.iconPass} />
 				    </TouchableOpacity>
 				    <TouchableOpacity style={style.submit} onPress={this.handleSubmit.bind(this)}>
@@ -206,7 +198,7 @@ export default class LoginComponent extends Component{
 				      </TouchableOpacity>*/}
 				    </View>  
 				    <Text style={[style.text, style.familia]}>¿Aún no haces parte de Weplan? </Text>	
-				     <TouchableOpacity onPress={()=> navigate('Registro', {tokenPhone:this.state.token})} style={style.signup_btn}>
+				     <TouchableOpacity onPress={()=> navigate('Registro', {tokenPhone:token})} style={style.signup_btn}>
 	 					<Text style={[style.btnRegistro, style.familia]}>Registrate</Text>
 	 				</TouchableOpacity>
 				</ImageBackground>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, Image, TouchableOpacity, Alert, Platform, StyleSheet} from 'react-native'
 import ImagePicker 	from 'react-native-image-picker';
-import ImagePicker2 from 'react-native-image-crop-picker';
+// import ImagePicker2 from 'react-native-image-crop-picker';
 
 
 

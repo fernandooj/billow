@@ -13,12 +13,7 @@ import Lightbox from 'react-native-lightbox';
 import KeyboardListener from 'react-native-keyboard-listener';
 import Toast from 'react-native-simple-toast';
 import { showLocation, Popup } from 'react-native-map-link'
-import FCM  from "react-native-fcm";
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////  ARCHIVOS GENERADOS POR EL EQUIPO  //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,8 +28,6 @@ import {URL}  from '../../App.js';
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// 
 const heightScreen = Dimensions.get('window').height
 
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-TRACKER.trackScreenView("chat");
 export default class ChatComponent extends Component{
 	constructor(props){
 		super(props)
@@ -123,13 +116,13 @@ export default class ChatComponent extends Component{
 	 	badge = badge<0 ?0 :badge
 
 	 	////////////////////////////////////////////////////////////  actualizo el numero del badge
-	  	FCM.setBadgeNumber(badge);  
-	  	try {
-		    await AsyncStorage.setItem('badgeArray', JSON.stringify(badgeArray))
-		    await AsyncStorage.setItem('badge', 	 JSON.stringify(badge))
-		} catch (error) {
-		   console.log(error)
-		}
+	  	// FCM.setBadgeNumber(badge);  
+	  	// try {
+		//     await AsyncStorage.setItem('badgeArray', JSON.stringify(badgeArray))
+		//     await AsyncStorage.setItem('badge', 	 JSON.stringify(badge))
+		// } catch (error) {
+		//    console.log(error)
+		// }
 	}
 	handleBackPress = () => {
 		const {navigate} = this.props.navigation

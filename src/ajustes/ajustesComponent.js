@@ -7,7 +7,7 @@ import GuiaInicio 	 	 from '../guia_inicio/guia_inicio'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {URL} from '../../App.js'
-import FCM  from "react-native-fcm";
+ 
 import Share from 'react-native-share';
 import Icon from 'react-native-fa-icons';
 export default class ajustesComponent extends Component{
@@ -18,9 +18,7 @@ export default class ajustesComponent extends Component{
 			{method:1, label:'Facturación', 	value:'facturacion'},
 			{method:3, label:'Código QR', 		value:'abrirQr'},
 			{method:1, label:'Contacto', 		value:'contacto'},
-			//{method:1, label:'Privacidad',  	value:'privacidad'},
-			//{method:1, label:'General', 	 	value:'general'},
-			{method:2, label:'Cerrar sesión',   value:'closeSession'},
+			{method:2, label:'Cerrar sesión',   value:'closeSession'}
 		],
 		delay: 300,
       	result: 'No result',
@@ -193,7 +191,7 @@ export default class ajustesComponent extends Component{
 			if(res.data.code==1){
 				saveInfo()
 				navigate('Login')
-				FCM.setBadgeNumber(0);  
+				// FCM.setBadgeNumber(0);  
 			}else if (res.data.code==1){
 				alert('error intenta nuevamente')
 			}

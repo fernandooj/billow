@@ -9,13 +9,7 @@ import StarRating from 'react-native-star-rating';
 import SocketIOClient from 'socket.io-client';
 import {URL}  from '../../App.js';
 import Toast 			 from 'react-native-simple-toast';
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-TRACKER.trackScreenView("notificacion");
+ 
 export default class notificacionComponent extends Component{
 	constructor(props) {
 	  	super(props);

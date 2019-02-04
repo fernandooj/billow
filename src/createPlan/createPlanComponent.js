@@ -16,17 +16,11 @@ import TakePhotoComponent 	  	  from '../takePhoto/takePhotoComponent.js'
 import CabezeraComponent 		  from '../ajustes/cabezera.js'
 import GuiaInicio 	 	 		  from '../guia_inicio/guia_inicio'
 import {sendRemoteNotification}   from '../push/envioNotificacion.js'
-import {
-  GoogleAnalyticsTracker,
-  GoogleTagManager,
-  GoogleAnalyticsSettings
-} from "react-native-google-analytics-bridge";
+
 import {URL}  from '../../App.js';
 
 const screenWidth = Dimensions.get('window').width;
-const TRACKER = new GoogleAnalyticsTracker("UA-129344133-1");
-TRACKER.trackScreenView("createPlan");
-
+ 
 export default class createPlanComponent extends Component{
 	constructor(props){
 		super(props);
