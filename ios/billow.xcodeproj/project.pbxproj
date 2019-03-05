@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -53,8 +52,6 @@
 		92064966220568A800C112E6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9206495B220568A800C112E6 /* SimpleLineIcons.ttf */; };
 		92064967220568A800C112E6 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9206495C220568A800C112E6 /* MaterialIcons.ttf */; };
 		920882F22206DB1000F63DD1 /* libRCTPagedContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 920882EF2206DACF00F63DD1 /* libRCTPagedContacts.a */; };
-		9216D1CA2204452300DDC785 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9216D1C72204450600DDC785 /* libRNFetchBlob.a */; };
-		9216D1D1220446C800DDC785 /* libRCTPdf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9216D1D0220446C100DDC785 /* libRCTPdf.a */; };
 		9283F56522040B3900413274 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9283F53F22040B3900413274 /* GoogleService-Info.plist */; };
 		9283F5A522041C7200413274 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9283F5A422041C5C00413274 /* libRNImagePicker.a */; };
 		9290020D2204333800BFC61D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9290020C2204333800BFC61D /* Social.framework */; };
@@ -503,8 +500,6 @@
 			files = (
 				92DDA16722081F0D00BE3151 /* libRCTFBLogin.a in Frameworks */,
 				920882F22206DB1000F63DD1 /* libRCTPagedContacts.a in Frameworks */,
-				9216D1D1220446C800DDC785 /* libRCTPdf.a in Frameworks */,
-				9216D1CA2204452300DDC785 /* libRNFetchBlob.a in Frameworks */,
 				92DDA16B22081F9600BE3151 /* FBSDKShareKit.framework in Frameworks */,
 				92B3CA2822043EDA00F33132 /* libRNShare.a in Frameworks */,
 				92B3CA2622043E1700F33132 /* libReactNativePermissions.a in Frameworks */,
@@ -1520,18 +1515,44 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-billow/Pods-billow-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-billow/Pods-billow-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_ROOT}/RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RSKImageCropperStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-billow/Pods-billow-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-billow/Pods-billow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D53C7DC9099199257B1B381B /* [CP] Check Pods Manifest.lock */ = {

@@ -266,7 +266,7 @@ export default class LoginComponent extends Component{
 					    />
 				      </TouchableOpacity>*/}
 				    </View>  
-				    <Text style={[style.text, style.familia]}>¿Aún no haces parte de Weplan? </Text>	
+				    <Text style={[style.text, style.familia]}>¿Aún no haces parte de Muneo? </Text>	
 				     <TouchableOpacity onPress={()=> navigate('Registro', {tokenPhone:token})} style={style.signup_btn}>
 	 					<Text style={[style.btnRegistro, style.familia]}>Registrate</Text>
 	 				</TouchableOpacity>

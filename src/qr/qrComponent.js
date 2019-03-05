@@ -40,7 +40,7 @@ export default class QrComponent extends Component{
 		        <ImageBackground style={style.fondo}  source={num===0 ?require('../../splash0.jpg') :num===1 ?require('../../splash1.jpg') :num===2 ?require('../../splash2.jpg') :num===3 ?require('../../splash3.jpg') :num===4 &&require('../../splash4.jpg')} >
 			        {
 			        	titulo
-			        	&&<Text style={[style.titulo, style.familia]}>Ya eres parte de weplan, Bienvenidos</Text>
+			        	&&<Text style={[style.titulo, style.familia]}>Ya eres parte de Muneo, Bienvenidos</Text>
 			        }
 					
 					<View style={style.qr} >

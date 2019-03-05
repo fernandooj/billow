@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, Image, TouchableOpacity, Alert, Platform, StyleSheet} from 'react-native'
 import ImagePicker 	from 'react-native-image-picker';
-// import ImagePicker2 from 'react-native-image-crop-picker';
+import ImagePicker2 from 'react-native-image-crop-picker';
 
 
 
@@ -96,6 +96,7 @@ export default class TakePhotoComponent extends Component{
 				    name: response.fileName ?response.fileName :`imagen.jpg`,
 				    path: response.path
 				};
+			
 				this.props.updateImagen(imagen)
 			    this.setState({
 			      avatarSource: source,
@@ -132,10 +133,12 @@ export default class TakePhotoComponent extends Component{
 				    path: response.path
 				};
 				this.props.updateImagen(imagen)
+				console.log(imagen)
 			    this.setState({
 			      avatarSource: source,
 			      imagen,
-			      showImg:false
+				  showImg:true,
+			      showAlert:false,
 			    });
 			    if (this.props.img1) {
 					this.props.img1(true)
@@ -207,7 +210,7 @@ export default class TakePhotoComponent extends Component{
 				</View>
 			); 
 		}else{
-			console.log(3)
+			console.log(avatarSource)
 			return (
 				<TouchableOpacity onPress={Platform.OS==='android' ?this.selectPhotoTappedAndroid.bind(this) :()=>this.showContent()} style={{flex: .4}}>
 					<View>
@@ -275,4 +278,3 @@ const style = StyleSheet.create({
 	}
 
 })
-

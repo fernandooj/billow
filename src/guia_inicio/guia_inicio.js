@@ -31,7 +31,7 @@ export default class guiaInicio extends Component{
 			return(	 
 				<View style={style.contenedor}>
 					<View style={style.subContenedor}>
-						<Text style={[style.text1, style.familia]}> ¡Bienvenido a &nbsp; WePlan!</Text>
+						<Text style={[style.text1, style.familia]}> ¡Bienvenido a &nbsp; Muneo!</Text>
 						<TouchableOpacity style={style.btnSiguiente} onPress={()=>this.setState({number:2})}>
 							<Text style={[style.txtSiguiente, style.familia]}>Siguiente</Text>
 						</TouchableOpacity>
@@ -137,7 +137,7 @@ export default class guiaInicio extends Component{
 					<Image source={require('../assets/images/guia_inicio/Recurso_23_3x.png')} style={style.pulpo7} />
 					<View style={style.subContenedor2}>
 						<Image source={require('../assets/images/guia_inicio/Recurso_25_3x.png')} style={style.image2} />
-						<Text style={[style.text2, style.familia]}>¡En este lugar podrás crear y agregar artículos al plan! También divide los costos para sacarle el mejor provecho a WePlan</Text>
+						<Text style={[style.text2, style.familia]}>¡En este lugar podrás crear y agregar artículos al plan! También divide los costos para sacarle el mejor provecho a Muneo</Text>
 					</View>
 					<TouchableOpacity style={style.btnSiguiente} onPress={()=>this.borrarGuia('chat')}>
 						<Text style={[style.txtSiguiente, style.familia]}>Siguiente</Text>
@@ -325,7 +325,7 @@ export default class guiaInicio extends Component{
 			return(	 
 				<View style={style.contenedor}>
 					<View style={style.subContenedor2}>
-						<Text style={[style.text18, style.familia]}>Como nuevo usuario de weplan te regalamos 1.000.000 para que difundas tus eventos, ¡Disfrutalos!</Text>
+						<Text style={[style.text18, style.familia]}>Como nuevo usuario de Muneo te regalamos 1.000.000 para que difundas tus eventos, ¡Disfrutalos!</Text>
 						<Image source={require('../assets/images/guia_inicio/estrella.png')} style={style.estrella} />
 					</View>
 					<TouchableOpacity style={style.btnSiguiente} onPress={()=>this.borrarGuia('ganapuntos')}>

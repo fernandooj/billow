@@ -5,7 +5,6 @@ import {CreatePlanStyle} 		  from '../createPlan/style'
 import axios 					  from 'axios'
 import DatePicker 				  from 'react-native-datepicker'
 import moment 					  from 'moment'
-import Slideshow 				  from 'react-native-slideshow';
 import AlertInput 				  from 'react-native-alert-input'; 
 import StarRating 				  from 'react-native-star-rating';
 import Toast 			 		  from 'react-native-simple-toast';
@@ -16,11 +15,12 @@ import TakePhotoComponent 	  	  from '../takePhoto/takePhotoComponent.js'
 import CabezeraComponent 		  from '../ajustes/cabezera.js'
 import GuiaInicio 	 	 		  from '../guia_inicio/guia_inicio'
 import {sendRemoteNotification}   from '../push/envioNotificacion.js'
-
+ 
 import {URL}  from '../../App.js';
 
 const screenWidth = Dimensions.get('window').width;
  
+
 export default class createPlanComponent extends Component{
 	constructor(props){
 		super(props);
@@ -167,11 +167,11 @@ export default class createPlanComponent extends Component{
 	render(){
 		const {nombre, fechaLugar, direccion, restricciones, asignados, imagen, adjuntarAmigos, mapa, restriccion, iconCreate, cargaPlan, imagenes, usuariosAsignados, fechaHoy, tipoPlan, publico, area, costo, saldo, lat, lng, showTipo, guia_inicio, ganapuntos, guardandoPlan, imagenResize} = this.state
 		const {navigate} = this.props.navigation
- 		console.log(JSON.stringify(imagenes))
+ 		console.log(imagenResize)
 		return (
 			<ScrollView style={CreatePlanStyle.contenedorGeneral} keyboardDismissMode='on-drag'> 
 				
-				{/* si la ubicacion no tiene */}
+				{/* si la ubicacion no tiene nombre */}
 				{this.renderAlertNombreEvento()}
 				{ typeof guia_inicio!=='string'  ?<View style={CreatePlanStyle.contenedorGeneral}><GuiaInicio number={15} guia_inicio={()=>this.setState({guia_inicio:'1'})} /></View> :null}
 				{ typeof ganapuntos!=='string' &&publico  &&<GuiaInicio number={18} guia_inicio={()=>this.setState({ganapuntos:'1'})} /> }

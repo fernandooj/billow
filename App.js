@@ -137,7 +137,7 @@ export default class App extends Component<{}> {
     if (local==null) {
       return (
          <ImageBackground source={num==0 ?require('./splash0.jpg') :num==1 ?require('./splash1.jpg') :num==2 ?require('./splash2.jpg') :num==3 ?require('./splash3.jpg') :num==4 &&require('./splash4.jpg')} style={styles.image}>   
-           <Image source={require('./src/assets/images/logo.png')} style={{width:300, height:220}} />
+           <Image source={require('./src/assets/images/logo.png')} style={{width:300, height:233}} />
           </ImageBackground>
           )
     }else{

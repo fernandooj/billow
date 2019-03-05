@@ -156,7 +156,7 @@ export default class ChatComponent extends Component{
 						 
 					</TouchableOpacity> 
 					<TouchableOpacity onPress={() => navigate('infoPlan', {plan,id})}>
-						<Text style={[style.nombrePlan, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 60) :''}</Text>
+						<Text style={[style.nombrePlanIos, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 60) :''}</Text>
 					</TouchableOpacity>
 					<View style={style.iconosHeaderContenedor}>
 						<TouchableOpacity onPress={() => navigate('encuesta', {planId, notificaciones, id, nombrePlan, imagen})}  style={style.iconContenedor}>
@@ -180,7 +180,7 @@ export default class ChatComponent extends Component{
 
 	renderMensajes(){
 		const {navigate} = this.props.navigation
-		const {id, mensajes, planAsignados, plan, showPdf} = this.state
+		const {id, mensajes, planAsignados, plan, showPdf, agregandoalplan} = this.state
 		return mensajes.map((e,key)=>{
 			//////////////////////////////////////////////////////////////////////////////////////////////////// TIPO CHAT
 			if (e.tipoChat===1) {
@@ -485,6 +485,7 @@ export default class ChatComponent extends Component{
 						</TouchableOpacity>
 					</View>	
 				)
+			//////////////////////////////////////////////////////////////////////////////////////////////////// TIPO MAPA
 			}else if (e.tipoChat===5) {
 				return (
 					<View key={key} style={e.userId== id ?style.contenedorBox :style.contenedorBox2}>
@@ -508,7 +509,7 @@ export default class ChatComponent extends Component{
 								</View>
 							}
 							<View style={style.mensajeCChat}>
-								<TouchableOpacity onPress={()=>this.setState({mapaVisible:true})}>
+								<TouchableOpacity onPress={()=>this.setState({mapaVisible:true})} >
 									<MapComponent lat={parseFloat(e.lat)} lng={parseFloat(e.lng)} />
 									{this.renderModalAbrirMapa(e.lat, e.lng, e.lugar)}
 								</TouchableOpacity>
@@ -518,6 +519,7 @@ export default class ChatComponent extends Component{
 						</TouchableOpacity>
 					</View>	
 				)	
+			//////////////////////////////////////////////////////////////////////////////////////////////////// TIPO IMAGEN
 			}else if (e.tipoChat===6) {
 				return (
 					<View key={key} style={e.userId== id ?style.contenedorBox :style.contenedorBox2}>
@@ -544,7 +546,7 @@ export default class ChatComponent extends Component{
 						      renderContent={() => (
 						        <Image 
 						          	source={{ uri: e.documento }}
-						         	style={{ width: "100%", height:600}}
+						         	style={{ width: 300, height:600}}
 						         />
 						       )}
 						    >

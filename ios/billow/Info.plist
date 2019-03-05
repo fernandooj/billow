@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Billow</string>
+	<string>Muneo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,24 +17,24 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>8.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb537378143390977</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb537378143390977</string>
-      </array>
-    </dict>
-  </array>
-  <key>FacebookAppID</key>
-  <string>537378143390977</string>
-  <key>FacebookDisplayName</key>
-  <string>WePlan</string>
+	<string>4</string>
+	<key>FacebookAppID</key>
+	<string>537378143390977</string>
+	<key>FacebookDisplayName</key>
+	<string>Muneo</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>whatsapp</string>
@@ -54,8 +54,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-  <key>NSContactsUsageDescription</key>
-  <string>Necesitamos acceder a tus contactos para que puedas invitar a tus amigos a descargar la aplicación o para agregarlos a tus planes</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -69,20 +67,30 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Queremos usar tu apple music.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Queremos usar tu Bluetooh.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Queremos usar tu Calendario.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Necesitamos acceder a tus contactos para que puedas invitar a tus amigos a descargar la aplicación o para agregarlos a tus planes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Autorizar a Muneo para acceder a tu localización para mostrarte tus planes mientras usas el app</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Activa las notificaciones para que estés al tanto de lo qué pasa en tus planes. Pueden incluir globos, alertas y sonidos que se pueden modificar en configuraciones.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Your message to user when the microsphone is accessed for the first time</string>
+	<string>Queremos acceder a tu microfono</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Queremos usar tu motion.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Queremos acceder a tu cámara para que puedas personalizar tus planes y artículos con imágenes en cualquier momento</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Queremos usar tu speech.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>
@@ -111,8 +119,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

@@ -136,7 +136,7 @@ export default class homeComponent extends Component{
 		
 		const enabled = await firebase.messaging().hasPermission();
 		if (enabled) {
-			  alert(enabled)
+			//   alert(enabled)
 			} else {
 				console.log("sin permiso de notificacion")
 				this._getPermission();

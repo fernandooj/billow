@@ -98,6 +98,13 @@ export const style = MediaQueryStyleSheet.create({
 		width:150,
 		lineHeight: 17
 	},
+	nombrePlanIos:{
+		color:'#ffffff',
+		fontSize:18,
+		left:15, 
+		width:150,
+		lineHeight: 17
+	},
 	regresar:{
 		width:screenWidth/5,
 		color:'#ffffff',
@@ -573,6 +580,7 @@ export const style = MediaQueryStyleSheet.create({
 		backgroundColor:'#afc4f0',
 		borderTopLeftRadius:10,
 		borderTopRightRadius:10, 
+		width:screenWidth-100
 	},
 	cPhotoContainer:{
 		position:'absolute',
@@ -694,7 +702,7 @@ export const style = MediaQueryStyleSheet.create({
 	////////////////// contenedor 6  ==> imagenes
 	////////////////////////////////////////////
 	Iphoto:{
-		width:'100%',
+		width:screenWidth-100,
 		height:300,	
 		borderWidth:4,
 		borderRadius:0,	
