@@ -2,7 +2,7 @@
 platform :ios, '9.0'
 pod 'Firebase/Core', '~> 5.15.0'
 pod 'Firebase/Messaging', '~> 5.15.0'
-
+pod 'GoogleSignIn', '~> 4.4.0'
 target 'billow' do
   rn_path = '../node_modules/react-native'
   rn_maps_path = '../node_modules/react-native-maps'

@@ -57,6 +57,7 @@
 		9283F5A522041C7200413274 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9283F5A422041C5C00413274 /* libRNImagePicker.a */; };
 		9290020D2204333800BFC61D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9290020C2204333800BFC61D /* Social.framework */; };
 		9290020F2204334000BFC61D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9290020E2204334000BFC61D /* MessageUI.framework */; };
+		92A9E53A223BF42F006C6D7D /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9E538223BF3F6006C6D7D /* libRNGoogleSignin.a */; };
 		92B3CA2622043E1700F33132 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B3CA2522043E1700F33132 /* libReactNativePermissions.a */; };
 		92B3CA2822043EDA00F33132 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B3CA2722043EDA00F33132 /* libRNShare.a */; };
 		92D508472207EC7E0051502D /* Futura-CondensedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92D508462207EC7E0051502D /* Futura-CondensedLight.ttf */; };
@@ -394,6 +395,13 @@
 			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
 			remoteInfo = LRDRCTSimpleToast;
 		};
+		92A9E537223BF3F6006C6D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92A9E509223BF3F5006C6D7D /* RNGoogleSignin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
+			remoteInfo = RNGoogleSignin;
+		};
 		92DDA14122081EEB00BE3151 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92DDA13722081EEB00BE3151 /* RCTFBLogin.xcodeproj */;
@@ -463,6 +471,7 @@
 		9283F59F22041C5C00413274 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		9290020C2204333800BFC61D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9290020E2204334000BFC61D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		92A9E509223BF3F5006C6D7D /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		92B3CA2522043E1700F33132 /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B3CA2722043EDA00F33132 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNShare.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D508462207EC7E0051502D /* Futura-CondensedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Futura-CondensedLight.ttf"; path = "../../../../../Documents/weplan/ios/fonts/Futura-CondensedLight.ttf"; sourceTree = "<group>"; };
@@ -499,6 +508,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A9E53A223BF42F006C6D7D /* libRNGoogleSignin.a in Frameworks */,
 				92DDA16722081F0D00BE3151 /* libRCTFBLogin.a in Frameworks */,
 				920882F22206DB1000F63DD1 /* libRCTPagedContacts.a in Frameworks */,
 				92DDA16B22081F9600BE3151 /* FBSDKShareKit.framework in Frameworks */,
@@ -731,6 +741,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				92A9E509223BF3F5006C6D7D /* RNGoogleSignin.xcodeproj */,
 				92DDA13722081EEB00BE3151 /* RCTFBLogin.xcodeproj */,
 				920882EA2206DACD00F63DD1 /* RCTPagedContacts.xcodeproj */,
 				9216D1CB220446C100DDC785 /* RCTPdf.xcodeproj */,
@@ -865,6 +876,14 @@
 			isa = PBXGroup;
 			children = (
 				929002342204369900BFC61D /* libLRDRCTSimpleToast.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92A9E50A223BF3F5006C6D7D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92A9E538223BF3F6006C6D7D /* libRNGoogleSignin.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1095,6 +1114,10 @@
 				{
 					ProductGroup = 9283F59822040C7000413274 /* Products */;
 					ProjectRef = AA57336F90294C92A7630326 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = 92A9E50A223BF3F5006C6D7D /* Products */;
+					ProjectRef = 92A9E509223BF3F5006C6D7D /* RNGoogleSignin.xcodeproj */;
 				},
 				{
 					ProductGroup = 9283F5A022041C5C00413274 /* Products */;
@@ -1406,6 +1429,13 @@
 			remoteRef = 929002332204369900BFC61D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		92A9E538223BF3F6006C6D7D /* libRNGoogleSignin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGoogleSignin.a;
+			remoteRef = 92A9E537223BF3F6006C6D7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		92DDA14222081EEB00BE3151 /* libRCTFBLogin.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1516,8 +1546,9 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-billow/Pods-billow-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-billow/Pods-billow-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -1537,6 +1568,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
@@ -1553,7 +1585,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-billow/Pods-billow-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-billow/Pods-billow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D53C7DC9099199257B1B381B /* [CP] Check Pods Manifest.lock */ = {
