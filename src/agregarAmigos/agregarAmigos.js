@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {View, Text, Image, TouchableOpacity, Modal, ScrollView} from 'react-native'
+import {View, Text, Image, TouchableOpacity, Modal, ScrollView, Platform, AsyncStorage} from 'react-native'
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import {AmigosStyle} from './style'
 import axios from 'axios'
-import {URL}  from '../../App.js';
+import {URL, VERSION}  from '../../App.js';
+import firebase from 'react-native-firebase';
 const KEYS_TO_FILTERS = ['nombre', 'username']
 export default class AgregarAmigosComponent extends Component{
 	constructor(props){
@@ -18,7 +19,14 @@ export default class AgregarAmigosComponent extends Component{
 		}
 		this.searchUpdated = this.searchUpdated.bind(this)
 	}
-	componentWillMount(){
+	async componentWillMount(){
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		firebase.analytics().setCurrentScreen("Agregar Amigos");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		const {asignados, usuariosAsignados} = this.props
  		if (usuariosAsignados.length>0 ) {
  			axios.get('/x/v1/ami/amigoUser/asignados/true')

@@ -169,6 +169,9 @@ export default class ajustesComponent extends Component{
 				<TouchableOpacity onPress={()=>this.share()}>
 					<Text>Compartir</Text>
 				</TouchableOpacity>
+				<TouchableOpacity>
+					<Text>Version 1.0.9</Text>
+				</TouchableOpacity>
 			</View>
 		)
 	}

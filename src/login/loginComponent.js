@@ -4,7 +4,7 @@ import {style} from './style'
 import Image from 'react-native-scalable-image';
 import axios from 'axios';
 import Icon from 'react-native-fa-icons';
-// import {GoogleSignin} from 'react-native-google-signin';
+import {GoogleSignin} from 'react-native-google-signin';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 
 import firebase from 'react-native-firebase';
@@ -29,19 +29,8 @@ export default class LoginComponent extends Component{
 			console.log(granted)
 		});
 		const {google} = this.state
-    	////////////////////////////////////////////////////////////////////////////////////
-    	/////////////////////		LOAD GOOGLE DATA 	///////////////////////////////////
-   //  	////////////////////////////////////////////////////////////////////////////////////
-   //  	GoogleSignin.configure({
-   //  		webClientId: '393631179846-h5elfjd904ueb0q76ghfavv3aoh14kin.apps.googleusercontent.com',
-	  //       offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
-	  //   })
-   //  	.then(()=>{
-			// GoogleSignin.currentUserAsync().then((user) => {
-			// 	// JSON.stringify(user)
-			// 	this.setState({user: user});
-			// }).done();	   
-   //  	})
+		GoogleSignin.configure()
+    	 
 	}
 	_signInRedes(e){
 		const {navigate} = this.props.navigation 	
@@ -119,73 +108,36 @@ export default class LoginComponent extends Component{
 			})
 			 	
 		}else{
-			// GoogleSignin.signIn()
-			// .then((result) => {
-			// 	alert(JSON.stringify(result))
-			// 	let accessToken = result.accessToken
-			// 	let idUser = result.id
-			// 	let nombre = result.name
-			// 	let photo = result.photo
-			// 	let email = result.email
-			// 	let username = result.email
-			// 	let tipo = 'google'
-			// 	let acceso = 'suscriptor'
-			// 	console.log({accessToken, idUser, nombre, photo, email, tipo})
-			// 	axios.post('/x/v1/user/facebook', {accessToken, idUser, nombre, photo, email, tipo, username, acceso, tokenPhone:this.state.token})
-			// 	.then((e)=>{
-			// 		if (e.data.code==1) {
-			// 			if (e.data.user.categorias.length>1) {
-			// 				saveInfo()
-			// 				navigate('inicio') 
-			// 			}else{
-			// 				navigate('editPerfil2') 
-			// 			}
-			// 		}
-			// 	})
-			// 	.catch((err)=>{
-			// 		console.log(err)
-			// 	})
-			// })
-			// .catch((err) => {
-			// 	alert(JSON.stringify(err))
-			// })
-			// .done();
+			GoogleSignin.signIn()
+			.then((result) => {
+				let {name, photo, email, id} = result.user
+				// axios.post("user/redes", {tokenPhone, token:result.accessToken, username:email, email, tipo:'google', nombre:name, avatar:photo}).then((e)=>{
+				// 	if (e.data.code==1) {
+				// 		e.data.status ?this.props.login() :alert("Intenta Nuevamente")
+				// 	}
+				// })
+				axios.post('/x/v1/user/facebook', {accessToken: result.accessToken, idUser: id, nombre:name, photo, email, tipo:"google", username:email, acceso:"suscriptor", tokenPhone:token})
+				.then((e)=>{
+					if (e.data.code==1) {
+						if (e.data.user.categorias.length>1) {
+							saveInfo()
+							navigate('inicio') 
+						}else{
+							navigate('editPerfil2') 
+						}
+					}
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
+			})
+			.catch((err) => {
+				alert(JSON.stringify(err))
+			})
+			.done();
 		}
 	}
-	// async signIn(){
-	// 	const {navigate} = this.props.navigation 	
-	// 	const {token} = this.state
-	//   try {
-	//     await GoogleSignin.hasPlayServices();
-	//     const userInfo = await GoogleSignin.signIn();
-	//     alert(JSON.stringify(userInfo))
-	//     let accessToken = result.accessToken
-	// 	let idUser = result.id
-	// 	let nombre = result.name
-	// 	let photo = result.photo
-	// 	let email = result.email
-	// 	let username = result.email
-	// 	let tipo = 'google'
-	// 	let acceso = 'suscriptor'
-	// 	console.log({accessToken, idUser, nombre, photo, email, tipo})
-	// 	axios.post('/x/v1/user/facebook', {accessToken, idUser, nombre, photo, email, tipo, username, acceso, tokenPhone:this.state.token})
-	// 	.then((e)=>{
-	// 		if (e.data.code==1) {
-	// 			if (e.data.user.categorias.length>1) {
-	// 				saveInfo()
-	// 				navigate('inicio') 
-	// 			}else{
-	// 				navigate('editPerfil2') 
-	// 			}
-	// 		}
-	// 	})
-	// 	.catch((err)=>{
-	// 		alert(JSON.stringify(err))
-	// 	})
-	//   } catch (error) {
-	//   	alert(JSON.stringify(error))
-	//   }
-	// };
+	 
 	async componentDidMount(){
 	    registerAppListener(this.props.navigation);
 
@@ -258,13 +210,13 @@ export default class LoginComponent extends Component{
 							source={require('../assets/images/facebook.png')}
 					    />
 				      </TouchableOpacity>
-				      {/*<TouchableOpacity onPress={()=>this.signIn(2)} >
+				      <TouchableOpacity onPress={()=>this._signInRedes(2)} >
 				       <Image
 							style={style.imageLogos}
 							width={60} // height will be calculated automatically
 							source={require('../assets/images/google.png')}
 					    />
-				      </TouchableOpacity>*/}
+				      </TouchableOpacity>
 				    </View>  
 				    <Text style={[style.text, style.familia]}>¿Aún no haces parte de Muneo? </Text>	
 				     <TouchableOpacity onPress={()=> navigate('Registro', {tokenPhone:token})} style={style.signup_btn}>
@@ -312,9 +264,11 @@ export default class LoginComponent extends Component{
 
 const saveInfo = async (userInfo)=>{
 	let id = JSON.stringify(userInfo._id)
+	let nombre = JSON.stringify(userInfo.username)
 	let notificacion = userInfo.notificacion ?JSON.stringify(userInfo.notificacion) :''
 	try {
 	    await AsyncStorage.setItem('userInfoId', id);
+	    await AsyncStorage.setItem('userNombre', nombre);
 	    await AsyncStorage.setItem('userInfoNotificacion', notificacion);
 	} catch (error) {
 	   console.log(error)

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Image, TouchableOpacity, ImageBackground, ScrollView, Platform, Keyboard, Dimensions, Alert, Animated, ActivityIndicator, AsyncStorage, TouchableHighlight} from 'react-native'
+import {View, Text, Image, TouchableOpacity, ImageBackground, ScrollView, Platform, Keyboard, Animated, ActivityIndicator, AsyncStorage, TouchableHighlight} from 'react-native'
 import {style} from '../home/style'
 import axios from 'axios'
 import SearchInput, { createFilter } from 'react-native-search-filter';
@@ -10,21 +10,18 @@ import CabezeraComponent from '../cabezeraFooter/cabezeraComponent'
 import FooterComponent 	 from '../cabezeraFooter/footerComponent'
 import GuiaInicio 	 	 from '../guia_inicio/guia_inicio'
 import type { RemoteMessage } from 'react-native-firebase';
-
+import Geocoder from 'react-native-geocoding';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {registerAppListener} from "../push/Listeners";
 import UltimaVersionComponent from '../ultimaVersion/ultimaVersion'
-import {URL}  from '../../App.js';
+import {VERSION}  from '../../App.js';
 
  
 
 const KEYS_TO_FILTERS = ['nombre', 'lugar']
-const {width, height} = Dimensions.get('window')
-const SCREEN_HEIGHT = height
-const SCREEN_WIDTH = width
-const ASPECT_RATIO = width / height
-const LATITUD_DELTA = 0.092
-const LONGITUDE_DELTA  = LATITUD_DELTA * ASPECT_RATIO
+Geocoder.init("AIzaSyCn_XO2J1yIl7I3UMy7hL6-0QmFJAOwIz8");
+ 
+ 
 
 export default class homeComponent extends Component{
 	constructor(props){
@@ -51,7 +48,13 @@ export default class homeComponent extends Component{
 		this.searchUpdated = this.searchUpdated.bind(this)
 	}
 	
-	getPlans(lat, lng){
+	 getPlans(lat, lng){
+		Geocoder.from(lat, lng)
+		.then(json => {
+        	var userDireccion = json.results[4].formatted_address;
+			AsyncStorage.setItem('userDireccion', userDireccion);
+		})
+		.catch(error => console.warn(error));
 		axios.get(`/x/v1/pla/plan/pago/${lat}/${lng}`)
 		.then(res=>{
 			console.log(res.data)
@@ -71,7 +74,14 @@ export default class homeComponent extends Component{
 		})
 	}
 	async componentWillMount(){
- 
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Chat");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"nombre":userNombre,"userId":userId,"platform":Platform.OS, userDireccion, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		let guia_inicio   = await AsyncStorage.getItem('home');
 		this.setState({guia_inicio})
 		if (Platform.OS==='android') {
@@ -96,6 +106,7 @@ export default class homeComponent extends Component{
 				let lng = parseFloat(e.coords.longitude)
 				this.setState({lat, lng})
 				this.getPlans(lat, lng)
+				
 			},
 				(error) => this.getPlans(undefined, undefined),
 				{enableHighAccuracy: true, timeout:5000, maximumAge:0})
@@ -153,9 +164,29 @@ export default class homeComponent extends Component{
 	    registerAppListener(navigation);
 	    
 		this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
-			console.log(RemoteMessage)
+			console.log(message)
 		});
-		 
+
+		const channel = new firebase.notifications.Android.Channel('test-channel', 'Test Channel', firebase.notifications.Android.Importance.Max)
+    	.setDescription('My apps test channel');
+		registerAppListener(this.props.navigation);
+		firebase.notifications().getInitialNotification()
+		.then((notificationOpen: NotificationOpen) => {
+			if (notificationOpen) {
+			// Get information about the notification that was opened
+			console.log("tomatlo perro")
+			const notif: Notification = notificationOpen.notification;
+			this.setState({
+				initNotif: notif.data
+			})
+				if(notif && navigation.state.routeName=='Home'){
+					let id = notif.parameter
+					this.props.navigation.navigate(notif.targetScreen, id)
+					console.log(notif)
+				}
+			}
+		});
+
 
 	    // FCM.getInitialNotification().then(notif => {
 	    	

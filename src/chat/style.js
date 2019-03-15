@@ -709,6 +709,14 @@ export const style = MediaQueryStyleSheet.create({
 		borderColor:'#9CB7F5',
 	},
 },{
+	"@media (max-device-width: 380)": {
+		nombrePlanIos:{
+			fontSize:17,
+			left:35, 
+			lineHeight: 19
+		},
+	}
+},{
 	"@media (max-device-width: 360)": {
 		btnImagenPlan:{
 			position:'absolute',
@@ -798,7 +806,7 @@ export const style = MediaQueryStyleSheet.create({
 			width:90,
 			height:50,
 		},
-	 
+		
 		contenedorPregunta:{
 			width:90,
 			height:55,

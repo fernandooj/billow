@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Image, TouchableOpacity, Alert, ScrollView, AsyncStorage} from 'react-native'
+import {View, Text, Image, TouchableOpacity, Alert, ScrollView, AsyncStorage, Platform} from 'react-native'
 import {style} from '../notificacion/style'
 import axios from 'axios'
 import CabezeraComponent from '../ajustes/cabezera.js'
@@ -7,9 +7,9 @@ import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import FooterComponent 	 from '../cabezeraFooter/footerComponent'
 import StarRating from 'react-native-star-rating';
 import SocketIOClient from 'socket.io-client';
-import {URL}  from '../../App.js';
+import {URL, VERSION}  from '../../App.js';
 import Toast 			 from 'react-native-simple-toast';
- 
+import firebase from 'react-native-firebase';
 export default class notificacionComponent extends Component{
 	constructor(props) {
 	  	super(props);
@@ -24,6 +24,14 @@ export default class notificacionComponent extends Component{
 	}
 	
 	componentWillMount = async()=>{
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		firebase.analytics().setCurrentScreen("Notificaciones");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		this.socket = SocketIOClient(URL);
 		this.socket.on(`notificacion`, this.onReceivedMessage);
 		this.socket.on(`notificacionCostoCreador`, this.onReceivedMessageCreador); /// si el dueño del item tiene varias opciones para ingresar usuarios

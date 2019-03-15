@@ -6,6 +6,7 @@ export const style = MediaQueryStyleSheet.create({
 	contenedor:{
 		flex: 1,
 		backgroundColor:"#ffffff",
+		width:'100%',	
 	},
 	familia:{
 		fontFamily:'Futura-CondensedLight',
@@ -154,8 +155,8 @@ export const style = MediaQueryStyleSheet.create({
 			fontSize:14
 		},
 		sinPlanes:{
-			width:320,
-			height:430,
+			width:size.width,
+			height:size.height-80,
 			marginBottom:10
 		},
 	}

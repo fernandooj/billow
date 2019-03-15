@@ -36,6 +36,7 @@ export const sendRemoteNotification = (tipo, token, targetScreen, titulo, mensaj
 				// group: "GROUP",
 				// badge:33,
 				show_in_foreground: true,
+				show_in_background: true,
 				now: new Date().toISOString()
 			},
 				"priority": 10
@@ -58,7 +59,8 @@ export const sendRemoteNotification = (tipo, token, targetScreen, titulo, mensaj
 					parameter,
 					group: "GROUP",
 					// badge:1,
-					show_in_foreground: true
+					show_in_foreground: true,
+					show_in_background: true,
 			},
 			data: {
 				targetScreen:targetScreen,

@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import {View, Text, ScrollView, ImageBackground, TouchableOpacity, Image, TextInput, AsyncStorage} from 'react-native'
+import {View, Text, ScrollView, TouchableOpacity, Image, Platform, AsyncStorage} from 'react-native'
 import {style} 			 from './style'
 import axios 			 from 'axios'
 import Toast 			 from 'react-native-simple-toast';
 import CabezeraComponent from '../ajustes/cabezera.js'
 import FooterComponent 	 from '../cabezeraFooter/footerComponent'
 import GuiaInicio 	 	 from '../guia_inicio/guia_inicio'
-
+import firebase from 'react-native-firebase';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////  ARCHIVOS GENERADOS POR EL EQUIPO  //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-import {URL}  from '../../App.js';
+import {VERSION}  from '../../App.js';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
@@ -25,6 +25,14 @@ export default class walletComponent extends Component{
 		}
 	}
 	async componentWillMount(){
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Billetera");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, userDireccion, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		let guia_inicio   = await AsyncStorage.getItem('wallet');
 		this.setState({guia_inicio})
 		axios.get('/x/v1/pla/plan/suma/totales/plan')

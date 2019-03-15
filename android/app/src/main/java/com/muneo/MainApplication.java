@@ -14,6 +14,13 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import com.imagepicker.ImagePickerPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; 
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage; 
+import com.magus.fblogin.FacebookLoginPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +41,13 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFetchBlobPackage(),
           new RNSharePackage(),
           new ImagePickerPackage(),
+          new MapsPackage(),
+          new RNAndroidLocationEnablerPackage(),
+          new RNFirebaseMessagingPackage(),
+          new FacebookLoginPackage(),
+          new RNFirebaseNotificationsPackage(),
+          new RNFirebaseAnalyticsPackage(),
+          new RNGoogleSigninPackage(),
           new RNFirebasePackage()
       );
     }

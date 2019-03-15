@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
-import {View, Text, Image, TouchableOpacity, Dimensions, Alert, Modal, Keyboard, TextInput, ScrollView} from 'react-native'
+import {View, Text, Image, TouchableOpacity, Dimensions,  Modal, Keyboard, ScrollView} from 'react-native'
 import {CreatePlanStyle} from '../createPlan/style'
  
-import MapView, { AnimatedRegion, Marker, Circle } from 'react-native-maps';
+import MapView, {  Marker, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { TextInputMask } from 'react-native-masked-text' 
 import KeyboardListener from 'react-native-keyboard-listener';
 
 const {width, height} = Dimensions.get('window')
-const SCREEN_HEIGHT = height
-const SCREEN_WIDTH = width
+ 
 const ASPECT_RATIO = width / height
 const LATITUD_DELTA = 0.092
-const LONGITUDE_DELTA  = LATITUD_DELTA * ASPECT_RATIO
+ 
 export default class MapaPlanComponent extends Component{
 	constructor(props){
 		super(props);

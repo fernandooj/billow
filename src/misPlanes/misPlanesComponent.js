@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import {View, Text, ScrollView, ImageBackground, TouchableOpacity, Image, TextInput, Keyboard, Platform} from 'react-native'
+import {View, Text, ScrollView, AsyncStorage, TouchableOpacity, Image, TextInput, Keyboard, Platform} from 'react-native'
 import {MisPlanesStyle} from './style'
 import axios from 'axios'
 import Toast 			 		  from 'react-native-simple-toast';
 import moment 					  from 'moment' 
 import FooterComponent 	      from '../cabezeraFooter/footerComponent'
 import UltimaVersionComponent from '../ultimaVersion/ultimaVersion'
-
+import firebase from 'react-native-firebase';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////  ARCHIVOS GENERADOS POR EL EQUIPO  //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-import {URL}  from '../../App.js';
+import {URL, VERSION}  from '../../App.js';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// 
  
@@ -23,7 +23,15 @@ export default class MisPlanesComponent extends Component{
 			allList:[]
 		}
 	}
-	componentWillMount(){
+	async componentWillMount(){
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Mis Planes");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, userDireccion, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		Keyboard.dismiss()
 		if (Platform.OS==='android') {
 			////////////////////////////////////////////////////////////////// OBTENGO LA ULTIMA VERSION DE LA APP, SI NO ESTA ACTUALIZADA LE MUESTRO UN MENSAJE

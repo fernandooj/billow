@@ -36,12 +36,13 @@ export default class CabezeraComponent extends Component{
 	render(){
 		const {navigate, publico} = this.props
 		const route = navigate.state.routeName
+		console.log(route)
 		return(
 			<View style={cabezeraFooterStyle.footer3} >
 				<TouchableOpacity onPress={route=='inicio' ?null :()=> navigate.navigate('inicio')} style={route=='Home'||route=='inicio' ?[cabezeraFooterStyle.btnFooter3, cabezeraFooterStyle.btnFooter3Active] :[cabezeraFooterStyle.btnFooter3]} >
 					<Image source={require('../assets/images/home.png')} style={cabezeraFooterStyle.iconFooter3} />
 				</TouchableOpacity>
-				<TouchableOpacity onPress={route=='wallet' ?null :()=> navigate.navigate('wallet')} style={route=='' ?[cabezeraFooterStyle.btnFooter3, cabezeraFooterStyle.btnFooter3Active] :[cabezeraFooterStyle.btnFooter3]} >
+				<TouchableOpacity onPress={route=='wallet' ?null :()=> navigate.navigate('wallet')} style={route=='wallet' ?[cabezeraFooterStyle.btnFooter3, cabezeraFooterStyle.btnFooter3Active] :[cabezeraFooterStyle.btnFooter3]} >
 					<Image source={require('../assets/images/mi_wallet.png')} style={cabezeraFooterStyle.iconFooter3} />
 				</TouchableOpacity>
 				<TouchableOpacity onPress={route=='3' ?null :()=> navigate.navigate('createPlan', publico)} style={route=='3' ?[cabezeraFooterStyle.btnFooter3, cabezeraFooterStyle.btnFooter3Create, cabezeraFooterStyle.btnFooter3Active] :[cabezeraFooterStyle.btnFooter3, cabezeraFooterStyle.btnFooter3Create]} >

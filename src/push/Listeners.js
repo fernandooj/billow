@@ -23,7 +23,9 @@ export async function registerHeadlessListener(message: RemoteMessage){
 
 // these callback will be triggered only when app is foreground or background
 export function registerAppListener(navigation){
-  this.notificationListener = firebase.notifications().onNotification(notification => {
+  this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
+    console.log(notification)
+    notification.android.setChannelId("1");
     firebase.notifications().displayNotification(notification);
   })
   this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen: NotificationOpen) => {
@@ -32,10 +34,10 @@ export function registerAppListener(navigation){
     if(notif.data.targetScreen === 'detail'){
       setTimeout(()=>{
         navigation.navigate('Detail')
-      }, 500)
+      }, 500) 
     }
     setTimeout(()=>{
-      alert(`User tapped notification\n${notif.notificationId}`)
+      // alert(`User tapped notification\n${notif.notificationId}`)
     }, 500)
   });
 

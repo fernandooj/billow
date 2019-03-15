@@ -72,9 +72,13 @@ export const style = MediaQueryStyleSheet.create({
 	},
 	 
 },{
-	"@media (max-device-width: 320)": {
+	"@media (max-device-width: 360)": {
 		nombre:{
 			width:160,
+		},
+		sinPlanes:{
+			width:size.width,
+			height:size.height-80,
 		},
 	}
 })

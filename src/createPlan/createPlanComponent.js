@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Image, TouchableOpacity, TextInput, ScrollView, Picker, Alert, Dimensions, Platform, AsyncStorage, ImageBackground, ActivityIndicator} from 'react-native'
+import {View, Text, Image, TouchableOpacity, TextInput, ScrollView, Alert, Dimensions, Platform, AsyncStorage, ImageBackground, ActivityIndicator} from 'react-native'
 
 import {CreatePlanStyle} 		  from '../createPlan/style'
 import axios 					  from 'axios'
@@ -15,8 +15,8 @@ import TakePhotoComponent 	  	  from '../takePhoto/takePhotoComponent.js'
 import CabezeraComponent 		  from '../ajustes/cabezera.js'
 import GuiaInicio 	 	 		  from '../guia_inicio/guia_inicio'
 import {sendRemoteNotification}   from '../push/envioNotificacion.js'
- 
-import {URL}  from '../../App.js';
+import firebase from 'react-native-firebase';
+import {URL, VERSION}  from '../../App.js'; 
 
 const screenWidth = Dimensions.get('window').width;
  
@@ -54,6 +54,14 @@ export default class createPlanComponent extends Component{
 	}
 
 	async componentWillMount(){
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Crear Plan");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, VERSION, userDireccion});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		let guia_inicio   = await AsyncStorage.getItem('crear_plan');
 		let ganapuntos    = await AsyncStorage.getItem('ganapuntos');
 		this.setState({guia_inicio, ganapuntos})

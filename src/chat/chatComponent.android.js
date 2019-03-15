@@ -6,14 +6,12 @@ import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {style} from '../chat/style'
 import update from 'react-addons-update';
 import moment from 'moment'
-import ImagePicker from 'react-native-image-picker';
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Lightbox from 'react-native-lightbox';
 import KeyboardListener from 'react-native-keyboard-listener';
 import Toast from 'react-native-simple-toast';
 import { showLocation, Popup } from 'react-native-map-link'
-
+import firebase from 'react-native-firebase';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////  ARCHIVOS GENERADOS POR EL EQUIPO  //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +21,9 @@ import PdfComponent           from '../pdf/pdfComponent.js'
 import MapComponent           from '../mapa/mapComponent.js'
 import GuiaInicio 	 		  from '../guia_inicio/guia_inicio'
 import {pedirImagen, pedirPdf, pedirContacto, pedirMapa} from './peticiones.js'		
-import {URL}  from '../../App.js';
+import {URL, VERSION}  from '../../App.js';
+
+ 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// 
 const heightScreen = Dimensions.get('window').height
@@ -57,6 +57,14 @@ export default class ChatComponent extends Component{
 	}
 
 	componentWillMount = async()=>{
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Chat");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"nombre":userNombre,"userId":userId,"platform":Platform.OS, VERSION, userDireccion});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		let planId = this.props.navigation.state.params	
 		// let planId = '5c06c8fc1b027d60d24dbb82'	 
 		console.log(planId)
@@ -66,7 +74,9 @@ export default class ChatComponent extends Component{
 		this.socket.on(`chat${planId}`, 	this.onReceivedMessage);
 		this.socket.on(`editPago${planId}`, this.onReceivedMessagePago);
 		this.setState({showIndicador:true, guia_inicio})
-  
+		
+	 
+		
 
 		/////////////////	OBTENGO EL PERFIL
 		axios.get('/x/v1/user/profile') 
@@ -75,6 +85,7 @@ export default class ChatComponent extends Component{
 			let photo = res.data.user.user.photo
 			let nombre = res.data.user.user.nombre
 			this.setState({id, photo, nombre, showIndicador:false})
+
 		})
 		.catch((err)=>{
 			console.log(err)
@@ -123,6 +134,7 @@ export default class ChatComponent extends Component{
 		// } catch (error) {
 		//    console.log(error)
 		// }
+
 	}
 	handleBackPress = () => {
 		const {navigate} = this.props.navigation

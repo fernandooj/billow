@@ -5427,6 +5427,11 @@ react-native-flip-card@^3.4.1:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-geocoding@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-geocoding/-/react-native-geocoding-0.3.0.tgz#7987ad98f52b2b5a912688e80347f5222861f2a9"
+  integrity sha512-Z5KM+PiwxF3BSq89WvRrIVpNhFAxiF/ftkwesfH+1U59a0oD9XCzEumKPHeP0Ymr1Bhrro4zFZnrQ3PHm4bjsg==
+
 react-native-google-places-autocomplete@^1.3.9:
   version "1.3.9"
   resolved "https://registry.yarnpkg.com/react-native-google-places-autocomplete/-/react-native-google-places-autocomplete-1.3.9.tgz#34c2e8b51df40ecb55ef3ccf57caba4c89ff9b56"
@@ -5435,6 +5440,11 @@ react-native-google-places-autocomplete@^1.3.9:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.10"
     qs "^5.2.0"
+
+react-native-google-signin@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-1.2.1.tgz#c4d442c24039ba3ef6983aab18cf13991a29a71f"
+  integrity sha512-i19hQF/HYXdDjwFMM4tx3b7IbztHpKqrpDbjyH7jm+d26F2ow/51iUVRFekTIFRkdSHaKjqprtw9HKCntxXetA==
 
 react-native-image-crop-picker@^0.22.0:
   version "0.22.0"

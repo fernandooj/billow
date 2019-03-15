@@ -28,7 +28,7 @@ export default class TakePhotoComponent extends Component{
 			takePhotoButtonTitle:'Tomar Foto',
 			chooseFromLibraryButtonTitle:'Buscar en imagenes',
 			quality: 0.9,
-			maxWidth: 780,
+			maxWidth: 1024,
 			maxHeight: 1400,
 			allowsEditing:true,
 			storageOptions: {

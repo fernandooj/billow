@@ -6,7 +6,7 @@ import {sendRemoteNotification} from '../push/envioNotificacion.js'
 import {style} from '../chat/style'
 import update from 'react-addons-update';
 import moment from 'moment'
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+import firebase from 'react-native-firebase';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Lightbox from 'react-native-lightbox';
 import KeyboardListener from 'react-native-keyboard-listener';
@@ -22,10 +22,10 @@ import MapComponent           from '../mapa/mapComponent.js'
 import GuiaInicio 	 		  from '../guia_inicio/guia_inicio'
 import {pedirImagen, pedirPdf, pedirContacto, pedirMapa} from './peticiones.js'		
 import { showLocation, Popup } from 'react-native-map-link'
+import {URL, VERSION}  from '../../App.js';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
-import {URL}  from '../../App.js';
 
 const heightScreen = Dimensions.get('window').height
 export default class ChatComponent extends Component{
@@ -58,6 +58,14 @@ export default class ChatComponent extends Component{
 	}
 
 	componentWillMount = async()=>{
+		////////////////////////////////////////////// data info de analitycs ///////////////////////////////
+		let userId = await AsyncStorage.getItem('userInfoId');
+		let userNombre = await AsyncStorage.getItem('userNombre');
+		let userDireccion = await AsyncStorage.getItem('userDireccion');
+		firebase.analytics().setCurrentScreen("Chat");
+		firebase.analytics().setAnalyticsCollectionEnabled(true);
+		firebase.analytics().logEvent("infoUser", {"username":userNombre,"userId":userId,"platform":Platform.OS, userDireccion, VERSION});
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		let planId = this.props.navigation.state.params	
 		// let planId = '5be37154f542e76e7e6ac12c'	 
 		let guia_inicio   = await AsyncStorage.getItem('chat');
@@ -153,7 +161,6 @@ export default class ChatComponent extends Component{
 				 
 					<TouchableOpacity onPress={() => navigate('misPlanes')} style={style.iconRegresar}>
 						<Image source={require('../assets/images/item3.png')} style={style.imgRegresar}  />
-						 
 					</TouchableOpacity> 
 					<TouchableOpacity onPress={() => navigate('infoPlan', {plan,id})}>
 						<Text style={[style.nombrePlanIos, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 60) :''}</Text>
@@ -170,7 +177,6 @@ export default class ChatComponent extends Component{
 				<TouchableOpacity onPress={() => navigate('infoPlan', {plan,id})} style={style.btnImagenPlan}>
 					<Image
 						style={style.imagen}
-						 
 						source={{uri: imagen}}
 				    />	
 				</TouchableOpacity>

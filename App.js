@@ -39,12 +39,12 @@ import planesPublicosComponent     from './src/planesPublicos/planesPublicosComp
 import detallePlanPublicoComponent from './src/planesPublicos/detallePlanPublicoComponent';
 import importarComponent           from './src/importarContactos/importarContactos';
 import contactoComponent           from './src/contacto/contactoComponent';
-
+ 
 
 
 export const URL = 'https://appweplan.com/';
+export const VERSION = '1.0.9';
 axios.defaults.baseURL = URL;
-
 const win = Dimensions.get('window');
 
 export default class App extends Component<{}> {
@@ -55,13 +55,11 @@ export default class App extends Component<{}> {
     };
   }
   componentWillMount = async()=> {
-   
-   let userInfoId = await AsyncStorage.getItem('userInfoId');
-   console.log(userInfoId)
-   if (userInfoId) {
-      userInfoId = userInfoId.slice(1, -1)  
-   }
-   if (userInfoId===null || userInfoId==='0') {
+    let userInfoId = await AsyncStorage.getItem('userInfoId');
+    if (userInfoId) {
+        userInfoId = userInfoId.slice(1, -1)  
+    }
+    if (userInfoId===null || userInfoId==='0') {
       axios.get('/x/v1/user/profile/')
       .then((res)=>{
          // console.log(res.data.user)
