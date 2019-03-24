@@ -14,7 +14,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
-
+#import "RNFIRMessaging.h"
 
 @implementation AppDelegate
 
@@ -23,6 +23,8 @@
   [GMSServices provideAPIKey:@"AIzaSyCziBil85csgbBdgOAXFjaVvnZu4DUSKbI"];
   [RNFirebaseNotifications configure];
   [FIRApp configure];
+  [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

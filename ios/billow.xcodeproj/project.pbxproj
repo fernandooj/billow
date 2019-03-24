@@ -65,6 +65,7 @@
 		92DDA16B22081F9600BE3151 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DDA16822081F9300BE3151 /* FBSDKShareKit.framework */; };
 		92DDA16C22081F9600BE3151 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DDA16922081F9400BE3151 /* FBSDKCoreKit.framework */; };
 		92DDA16D22081F9600BE3151 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DDA16A22081F9500BE3151 /* FBSDKLoginKit.framework */; };
+		92E3581B2246DB9B00AD28D2 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3581A2246DB6F00AD28D2 /* libRNFIRMessaging.a */; };
 		96F71D5F6D324026B37AE4DA /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D59A7476AAE448B49915F6A4 /* SimpleLineIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B1EE380BBAF04663A7D9F5F1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE3BB3E7A43E4A76AA95F284 /* Feather.ttf */; };
@@ -409,6 +410,13 @@
 			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
 			remoteInfo = RCTFBLogin;
 		};
+		92E358192246DB6F00AD28D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92E358152246DB6D00AD28D2 /* RNFIRMessaging.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFIRMessaging;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -479,6 +487,7 @@
 		92DDA16822081F9300BE3151 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		92DDA16922081F9400BE3151 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92DDA16A22081F9500BE3151 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		92E358152246DB6D00AD28D2 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		9885CF5785BF497CA8E32007 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		9B1998377AD1455CB82C9E27 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		AA57336F90294C92A7630326 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
@@ -508,6 +517,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E3581B2246DB9B00AD28D2 /* libRNFIRMessaging.a in Frameworks */,
 				92A9E53A223BF42F006C6D7D /* libRNGoogleSignin.a in Frameworks */,
 				92DDA16722081F0D00BE3151 /* libRCTFBLogin.a in Frameworks */,
 				920882F22206DB1000F63DD1 /* libRCTPagedContacts.a in Frameworks */,
@@ -741,6 +751,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				92E358152246DB6D00AD28D2 /* RNFIRMessaging.xcodeproj */,
 				92A9E509223BF3F5006C6D7D /* RNGoogleSignin.xcodeproj */,
 				92DDA13722081EEB00BE3151 /* RCTFBLogin.xcodeproj */,
 				920882EA2206DACD00F63DD1 /* RCTPagedContacts.xcodeproj */,
@@ -892,6 +903,14 @@
 			isa = PBXGroup;
 			children = (
 				92DDA14222081EEB00BE3151 /* libRCTFBLogin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92E358162246DB6D00AD28D2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92E3581A2246DB6F00AD28D2 /* libRNFIRMessaging.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1114,6 +1133,10 @@
 				{
 					ProductGroup = 9283F59822040C7000413274 /* Products */;
 					ProjectRef = AA57336F90294C92A7630326 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = 92E358162246DB6D00AD28D2 /* Products */;
+					ProjectRef = 92E358152246DB6D00AD28D2 /* RNFIRMessaging.xcodeproj */;
 				},
 				{
 					ProductGroup = 92A9E50A223BF3F5006C6D7D /* Products */;
@@ -1443,6 +1466,13 @@
 			remoteRef = 92DDA14122081EEB00BE3151 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		92E3581A2246DB6F00AD28D2 /* libRNFIRMessaging.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFIRMessaging.a;
+			remoteRef = 92E358192246DB6F00AD28D2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1755,6 +1785,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = billow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1787,6 +1818,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = billow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
