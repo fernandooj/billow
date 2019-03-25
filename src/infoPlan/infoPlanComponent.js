@@ -2,17 +2,16 @@ import React, {Component} from 'react'
 import {View, Text, Image, TouchableOpacity, ScrollView, Alert, TextInput, Platform} from 'react-native'
 import {style} 					  from './style'
 import axios 					  from 'axios'
-import Icon 					  from 'react-native-fa-icons';
 import DatePicker 				  from 'react-native-datepicker'
 import moment 					  from 'moment'
 import AlertInput 				  from 'react-native-alert-input';
 import Lightbox 				  from 'react-native-lightbox';
-import { showLocation, Popup } 	  from 'react-native-map-link'
+import { Popup } 	  from 'react-native-map-link'
 import RestriccionesPlanComponent from '../createPlan/restricciones.js'
 import MapaPlanComponent 		  from '../createPlan/mapa.js'
 import AgregarAmigosComponent     from '../agregarAmigos/agregarAmigos.js'
 import TakePhotoComponent 	  	  from '../takePhoto/takePhotoComponent.js'
-import CabezeraComponent 		  from '../ajustes/cabezera.js'
+ 
 import {sendRemoteNotification}   from '../push/envioNotificacion.js'
  
 
@@ -30,7 +29,8 @@ export default class infoPlanComponent extends Component{
 	  		nombre:'',
 	  		descripcion:'',
 	  		fechaLugar:'',
-	  		loc:'',
+			loc:'',
+			img1:true,
 	  		lugar:'',
 	  		restricciones:[],
 	  		restriccionesAsignadas:[],
@@ -172,9 +172,7 @@ export default class infoPlanComponent extends Component{
 		notifica.push(e._id)
 	})
 	console.log("notifica")
-	console.log(this.state.notificaciones)
-	console.log(id)
-	console.log(this.state.notificaciones.includes(id))
+	console.log(this.state.img1)
 	let notificacionActiva = this.state.notificaciones.includes(id)
 	let menus = [
 		{funcion:()=>this.silenciar(id), texto:'Silenciar Plan', show: notificacionActiva ?true :false },
@@ -198,12 +196,12 @@ export default class infoPlanComponent extends Component{
 			   </View>
 				{/*<CabezeraComponent navigate={navigate} url={'chat'} parameter={data._id} texto='Info Plan' />*/}
 				<View style={style.encabezadoPlan}>
-				   	<View>
+				   	<View style={!img1 ?{height:210} :null}>
 				   		<View style={imagen ?style.avatar2 :style.avatar3} >
 					   		<TakePhotoComponent 
 								fuente={'camPerfil.png'} 
 								ancho={!imagen ?100 :100} alto={!imagen ?50 :100} 
-								border={100}
+								border={50}
 								updateImagen={(photo) => {this.setState({photo, imagen:true})}} 
 								img1={(img1) => {this.setState({img1})}} 
 							/>
@@ -222,45 +220,45 @@ export default class infoPlanComponent extends Component{
 						  	/>
 					  	</Lightbox>		 
 					</View>
-					<View>
-					{
-						permiteEditar
-						?<TextInput
-							style={[style.titulo, style.familia]}
-							onChangeText={(nombre) => this.setState({nombre, guardado:true})}
-							value={nombre}
-							underlineColorAndroid='transparent'
-							placeholder="NOMBRE DE TU PLAN"
-							placeholderTextColor="#ffffff" 
-							maxLength={30}
-					    />
-					    :<Text style={[style.titulo, style.familia]}>
-							{nombre} 
-						</Text>
-					}
-					{
-						permiteEditar
-						?<TextInput
-							style={[style.descripcion, style.familia]}
-							onChangeText={(descripcion) => this.setState({descripcion, guardado:true})}
-							value={descripcion}
-							underlineColorAndroid='transparent'
-							placeholder="Descripcion"
-							placeholderTextColor="#bbbbbb" 
-							maxLength={60}
-							multiline={true}
-					    />
-					    :<Text  style={[style.descripcion, style.familia]}>
-							{data.descripcion}
-						</Text>
-					}
-						
-					{
-						!permiteEditar
-						&&<Text  style={[style.autor, style.familia]}>
-							Por {data.idUsuario.nombre}
-						</Text>
-					}	
+					<View style={!img1  ?{height:210} :null}>
+						{
+							permiteEditar
+							?<TextInput
+								style={[style.titulo, style.familia]}
+								onChangeText={(nombre) => this.setState({nombre, guardado:true})}
+								value={nombre}
+								underlineColorAndroid='transparent'
+								placeholder="NOMBRE DE TU PLAN"
+								placeholderTextColor="#ffffff" 
+								maxLength={30}
+							/>
+							:<Text style={[style.titulo, style.familia]}>
+								{nombre} 
+							</Text>
+						}
+						{
+							permiteEditar
+							?<TextInput
+								style={[style.descripcion, style.familia]}
+								onChangeText={(descripcion) => this.setState({descripcion, guardado:true})}
+								value={descripcion}
+								underlineColorAndroid='transparent'
+								placeholder="Descripcion"
+								placeholderTextColor="#bbbbbb" 
+								maxLength={60}
+								multiline={true}
+							/>
+							:<Text  style={[style.descripcion, style.familia]}>
+								{data.descripcion}
+							</Text>
+						}
+							
+						{
+							!permiteEditar
+							&&<Text  style={[style.autor, style.familia]}>
+								Por {data.idUsuario.nombre}
+							</Text>
+						}	
 						
 					</View> 
 				</View>

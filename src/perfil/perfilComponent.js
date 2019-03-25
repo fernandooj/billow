@@ -289,6 +289,7 @@ export default class perfilComponent extends Component{
 		}else{
 			axios.put('/x/v1/user/update/'+id, {nombre, ciudad, telefono, nacimiento, sexo,  photo})
 			.then((res)=>{
+				console.log(res.data)
 				if(res.data.status=="SUCCESS"){
 					this.setState({exitoso:true, editarBtn:false})
 						setTimeout(()=>{

@@ -101,7 +101,7 @@ export const style = MediaQueryStyleSheet.create({
 	nombrePlanIos:{
 		color:'#ffffff',
 		fontSize:18,
-		left:30,
+		left:35,
 		top:1, 
 		width:180,
 		// lineHeight: 17
