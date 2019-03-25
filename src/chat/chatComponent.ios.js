@@ -7,6 +7,7 @@ import {style} from '../chat/style'
 import update from 'react-addons-update';
 import moment from 'moment'
 import firebase from 'react-native-firebase';
+import FCM  from "react-native-fcm"; 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Lightbox from 'react-native-lightbox';
 import KeyboardListener from 'react-native-keyboard-listener';
@@ -123,13 +124,13 @@ export default class ChatComponent extends Component{
 	 	badge = badge-newBadge.length
 	 	badge = badge<0 ?0 :badge
 	 	////////////////////////////////////////////////////////////  actualizo el numero del badge
-	  	// FCM.setBadgeNumber(badge);  
-	  	// try {
-		//     await AsyncStorage.setItem('badgeArray', JSON.stringify(badgeArray))
-		//     await AsyncStorage.setItem('badge', 	 JSON.stringify(badge))
-		// } catch (error) {
-		//    console.log(error)
-		// }
+	  	FCM.setBadgeNumber(badge);  
+	  	try {
+		    await AsyncStorage.setItem('badgeArray', JSON.stringify(badgeArray))
+		    await AsyncStorage.setItem('badge', 	 JSON.stringify(badge))
+		} catch (error) {
+		   console.log(error)
+		}
 	}
 	handleBackPress = () => {
 		const {navigate} = this.props.navigation
@@ -163,7 +164,7 @@ export default class ChatComponent extends Component{
 						<Image source={require('../assets/images/item3.png')} style={style.imgRegresar}  />
 					</TouchableOpacity> 
 					<TouchableOpacity onPress={() => navigate('infoPlan', {plan,id})}>
-						<Text style={[style.nombrePlanIos, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 60) :''}</Text>
+						<Text style={[style.nombrePlanIos, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 50) :''}</Text>
 					</TouchableOpacity>
 					<View style={style.iconosHeaderContenedor}>
 						<TouchableOpacity onPress={() => navigate('encuesta', {planId, notificaciones, id, nombrePlan, imagen})}  style={style.iconContenedor}>

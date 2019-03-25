@@ -170,7 +170,7 @@ export default class ChatComponent extends Component{
 						 
 					</TouchableOpacity> 
 					<TouchableOpacity onPress={() => navigate('infoPlan', {plan,id})}>
-						<Text style={[style.nombrePlan, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 60) :''}</Text>
+						<Text style={[style.nombrePlan, style.familia]}>{nombrePlan ?nombrePlan.substring(0, 50) :''}</Text>
 					</TouchableOpacity>
 					<View style={style.iconosHeaderContenedor}>
 						<TouchableOpacity onPress={() => navigate('encuesta', {planId, notificaciones, id, nombrePlan, imagen})}  style={style.iconContenedor}>

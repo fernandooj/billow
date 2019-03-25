@@ -32,13 +32,13 @@ export default class perfilComponent extends Component{
 			nombre:'',
 			sexo:'',
 			password:'',
-			photo:'https://appweplan.com/public/assets/logo.png',
+			photo:'http://releo.co/public/assets/logo.png', 
 			fechaHoy:moment().format('YYYY-MM-DD h:mm'),
 			imagen:false,
 			exitoso:false,
 			qr:false,
 			saldo:0,
-			img1:true
+			img1:false
 		}
 	}
 	componentWillMount(){
@@ -68,7 +68,7 @@ export default class perfilComponent extends Component{
 	 
 	 
  	renderPerfil(){
-		const {perfil, imagen, ciudad, ciudades, sexo, photo, exitoso, nombre, qr, calificacion, saldo, img1} = this.state
+		const {perfil, imagen, ciudad, ciudades, sexo, photo, exitoso, nombre, qr, calificacion, saldo, img1, editarBtn} = this.state
 		const {navigate} = this.props.navigation
 		let a=size<321 ?40 :60
 		let b=size<321 ?500 :100
@@ -80,7 +80,6 @@ export default class perfilComponent extends Component{
 							<TakePhotoComponent 
 								fuente={'camPerfil.png'} 
 								border={50} ancho={!imagen ?a :b} alto={!imagen ?a :b} 
-								updateImagen={(photo) => {this.setState({photo, imagen:true})}} 
 								updateImagen={(photo) => {this.setState({photo, imagen:true})}} 
 								img1={(img1) => {this.setState({img1})}} 
 							/>
@@ -230,7 +229,7 @@ export default class perfilComponent extends Component{
 					{/* BOTON ENVIAR */}
 					<View style={style.containerHecho}>
 						<TouchableOpacity style={style.btnHecho} onPress={this.handleSubmit.bind(this)} > 
-							<Text style={[style.hecho, style.familia]}>Editar!</Text> 
+							<Text style={[style.hecho, style.familia]}>{editarBtn ?"Editando ..." :"Editar!"}</Text> 
 						</TouchableOpacity> 
 					</View>	
 					
@@ -258,6 +257,7 @@ export default class perfilComponent extends Component{
 	handleSubmit(){
 		const {nombre, ciudad, telefono, nacimiento, sexo, password, photo, imagen, id} = this.state
 		console.log({nombre, ciudad, telefono, nacimiento, sexo, password, photo, imagen, id})
+		this.setState({editarBtn:true})
 		let data = new FormData();
 	
 		data.append('nombre', nombre);
@@ -277,7 +277,7 @@ export default class perfilComponent extends Component{
 			})
 			.then((res)=>{
 				if(res.data.status=="SUCCESS"){
-					this.setState({exitoso:true})
+					this.setState({exitoso:true, editarBtn:false})
 					setTimeout(()=>{
 						this.setState({exitoso:false})
 					},2000)
@@ -290,7 +290,7 @@ export default class perfilComponent extends Component{
 			axios.put('/x/v1/user/update/'+id, {nombre, ciudad, telefono, nacimiento, sexo,  photo})
 			.then((res)=>{
 				if(res.data.status=="SUCCESS"){
-					this.setState({exitoso:true})
+					this.setState({exitoso:true, editarBtn:false})
 						setTimeout(()=>{
 						this.setState({exitoso:false})
 					},2000)

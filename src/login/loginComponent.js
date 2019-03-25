@@ -7,11 +7,11 @@ import Icon from 'react-native-fa-icons';
 import {GoogleSignin} from 'react-native-google-signin';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 
-import firebase from 'react-native-firebase';
-import { registerAppListener} from "../push/Listeners";
+import FCM, {NotificationActionType} from "react-native-fcm";
+import {registerKilledListener, registerAppListener} from "../push/Listeners";
 import {PagedContacts} from 'react-native-paged-contacts';
 let pg = new PagedContacts(); 
- 
+registerKilledListener(); 
 export default class LoginComponent extends Component{
 	constructor(props) {
 	 super(props);
@@ -141,15 +141,23 @@ export default class LoginComponent extends Component{
 	async componentDidMount(){
 	    registerAppListener(this.props.navigation);
 
-	    const enabled = await firebase.messaging().hasPermission();
-		if (enabled) {
-			console.log(enabled)
-		} else {
-			console.log("sin permiso para acceder")
-		}
-		const token = await firebase.messaging().getToken();
-	    console.log(token)
-		this.setState({token})
+	    try{
+	      let result = await FCM.requestPermissions({badge: true, sound: true, alert: true});
+	    } catch(e){
+	      console.error(e);
+	    }
+
+	    FCM.getFCMToken().then(token => {
+	    	this.setState({token: token || ""})
+	    	console.log(token)
+	    });
+
+	    if(Platform.OS === 'ios'){
+	      FCM.getAPNSToken().then(token => {
+	        console.log("APNS TOKEN (getFCMToken)", token);
+	          
+	      });
+	    }
 
 	}
 	 

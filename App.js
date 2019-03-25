@@ -42,7 +42,7 @@ import contactoComponent           from './src/contacto/contactoComponent';
  
 
 
-export const URL = 'https://appweplan.com/';
+export const URL = 'http://muneo.co/';
 export const VERSION = '1.0.9';
 axios.defaults.baseURL = URL;
 const win = Dimensions.get('window');

@@ -82,8 +82,8 @@ export default class TakePhotoComponent extends Component{
 			// cancelButtonTitle:'Cancelar',
 			// takePhotoButtonTitle:'Tomar Foto',
 			// chooseFromLibraryButtonTitle:'Buscar en imagenes',
-			compressImageMaxWidth: 800,
-			compressImageMaxHeight: 800,
+			compressImageMaxWidth: 1024,
+			compressImageMaxHeight: 1024,
 			cropping: true,
 			forgeJpg: true,
 		};
@@ -118,8 +118,8 @@ export default class TakePhotoComponent extends Component{
 			// cancelButtonTitle:'Cancelar',
 			// takePhotoButtonTitle:'Tomar Foto',
 			// chooseFromLibraryButtonTitle:'Buscar en imagenes',
-			compressImageMaxWidth: 800,
-			compressImageMaxHeight: 800,
+			compressImageMaxWidth: 1024,
+			compressImageMaxHeight: 1024,
 			cropping: true,
 			forgeJpg: true,
 		};
@@ -240,7 +240,7 @@ export default class TakePhotoComponent extends Component{
 const style = StyleSheet.create({
 	contenedorBtn:{
 		position:"absolute", 
-		zIndex:1000, 
+		zIndex:10000, 
 		width:"96%",
 		left:0,
 		marginHorizontal:"2%",
