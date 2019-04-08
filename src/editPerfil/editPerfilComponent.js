@@ -155,7 +155,7 @@ export default class editPerfilComponent extends Component{
 	}
 	 
 	render(){
-		const {textApellido, textNombre, ciudad, email, textEmail, textTelefono, textDate, nombreRequired, apellidoRequired, ciudadRequired, emailRequired, dateRequired, generoRequired} = this.state
+		const {textApellido, textNombre, ciudad, email, textEmail, textTelefono, nombreRequired, apellidoRequired, ciudadRequired, emailRequired, dateRequired, generoRequired} = this.state
 		return(
 			<ScrollView style={style.contenedor} >
 			<View style={style.fondo} >

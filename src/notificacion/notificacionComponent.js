@@ -38,6 +38,7 @@ export default class notificacionComponent extends Component{
 
  		axios.get('/x/v1/not/notificacion')
  		.then(res=>{ 
+			 console.log(res.data)
  			if (res.data.code===2) {
 				this.props.navigation.navigate('Login')
 				Toast.show('No éstas logueado')
@@ -71,7 +72,7 @@ export default class notificacionComponent extends Component{
  		return notificacion.map((e, key)=>{
  			let valor = '$ '+Number(e.valorItem).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
  			let estaPlan = e.infoPlan ?e.infoPlan.asignados.includes(id) :[]
- 			console.log(estaPlan)
+ 			console.log(e.infoPlan)
 			return(
  				<View key={key} style={style.subContenedor}>
 	 				<View style={style.contenedorNoti2}>
@@ -79,7 +80,7 @@ export default class notificacionComponent extends Component{
 	 						onPress={e.tipo==2 &&((estaPlan || e.infoPlan.idUsuario===id) && e.infoPlan.activo===true && e.infoPlan.tipo=='suscripcion') ?()=>navigate('chat', e.idTipo) 
 	 								:e.tipo==1 || e.tipo==5 ?()=>navigate('profile', {userId:e.idUser, planId:null}) 
 	 								:e.tipo==3 || e.tipo==6 ?()=>navigate('item', {planId:e.infoItem.planId, tipo:e.tipo==3 ?1 :2}) :null } >
-		 					<Image source={e.photo ?{uri:e.photo} :{uri:'https://appweplan.com/public/assets/logo.png'}} style={style.avatar} />
+		 					<Image source={e.photo ?{uri:e.photo} :{uri:'http://muneo.co/public/assets/logo.png'}} style={style.avatar} />
 	 					</TouchableOpacity>
 	 					<View>
 	 						<TouchableOpacity onPress={e.tipo==2 ?()=>navigate('chat', e.idTipo) :e.tipo==1 || e.tipo==5 ?()=>navigate('profile', {userId:e.idUser, planId:null}) :null } >

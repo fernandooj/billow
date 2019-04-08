@@ -63,7 +63,7 @@ export default class UltimaVersionComponent extends Component{
 					?<TouchableOpacity style={style.btn} onPress={() => Linking.openURL('market://details?id=com.weplan&hl=es')}>
 					  	<Text style={style.btnText}>Actualizar</Text>
 					</TouchableOpacity>
-					:<TouchableOpacity style={style.btn} onPress={() => Linking.openURL('https://itunes.apple.com/us/developer/uriel-fernando-ortiz/id1421335317')}>
+					:<TouchableOpacity style={style.btn} onPress={() => Linking.openURL('https://itunes.apple.com/us/app/muneo/id1421335318?ls=1&mt=8')}>
 					  	<Text style={style.btnText}>Actualizar</Text>
 					</TouchableOpacity>
 				}

@@ -56,7 +56,14 @@ export default class ajustesAmigosComponent extends Component{
 						    t._id === thing._id  
 						  ))
 						)
-						this.setState({filteredData, usuarios:filteredData, amigosAsignados:res2.data.asignados})
+						////////////////////	QUITO MI USUARIO  ////////////////////////////////
+						filteredData = filteredData.filter(e=>{
+							return e._id != res.data.id
+						})
+						//////////////////////////////////////////////////////////////////////////
+						console.log(filteredData)
+						console.log(res.data.id)
+						this.setState({filteredData:filteredData, usuarios:filteredData, amigosAsignados:res2.data.asignados})
 					}
 			})	
 			.catch((err)=>{
@@ -127,9 +134,9 @@ export default class ajustesAmigosComponent extends Component{
  		paddingLeft += e.nativeEvent.layoutMeasurement.width;
  		if (e.nativeEvent.contentOffset.x >= e.nativeEvent.contentSize.width-paddingLeft) {
  			console.log(final)
- 			if (final<41) {
+ 		 
  				this.setState({final:final+5})
- 			}
+ 		 
  		}
  	}
  	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

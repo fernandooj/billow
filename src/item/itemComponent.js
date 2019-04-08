@@ -303,12 +303,12 @@ export default class ItemComponent extends Component{
 		const {navigate} = this.props.navigation
 		// alert(typeof (guia_inicio))
 		return (
-			<ScrollView>
-				<View  style={style.contentItem}>
+			<View  style={style.contentItem}>
 				{
 					typeof guia_inicio!=='string'  &&<GuiaInicio number={11} guia_inicio={()=>this.setState({guia_inicio:'1'})} />
 				}
-					<CabezeraComponent navigate={navigate} url={'chat'} parameter={this.state.planId} texto='Artículos' />
+				<CabezeraComponent navigate={navigate} url={'chat'} parameter={this.state.planId} texto='Artículos' />
+					<ScrollView>
 					
 					  	{/*****   show the modal to create component	*****/}
 						  	{
@@ -330,8 +330,8 @@ export default class ItemComponent extends Component{
 						  	
 						 	{this.renderAcordeon()}
 					  	</View>
-				</View>
-			</ScrollView>
+				</ScrollView>
+			</View>
 		);
 	}
 	cerrarItem(id, titulo){

@@ -170,7 +170,7 @@ export default class ajustesComponent extends Component{
 					<Text>Compartir</Text>
 				</TouchableOpacity>
 				<TouchableOpacity>
-					<Text>Version 1.0.9</Text>
+					<Text>Version 1.10.0</Text>
 				</TouchableOpacity>
 			</View>
 		)

@@ -38,7 +38,7 @@ export default class perfilComponent extends Component{
 			exitoso:false,
 			qr:false,
 			saldo:0,
-			img1:false
+			img1:true
 		}
 	}
 	componentWillMount(){
@@ -70,19 +70,24 @@ export default class perfilComponent extends Component{
  	renderPerfil(){
 		const {perfil, imagen, ciudad, ciudades, sexo, photo, exitoso, nombre, qr, calificacion, saldo, img1, editarBtn} = this.state
 		const {navigate} = this.props.navigation
-		let a=size<321 ?40 :60
-		let b=size<321 ?500 :100
+		console.log("img1")
+		console.log(img1)
+		let a=size<321 ?140 :90
+		let b=size<321 ?140 :90
 		if (perfil) {
 			return(
 				<View style={style.perfil}>
 					<View style={style.contenedorRegistros}>
-						<View style={img1 ?style.avatar2 :style.avatar3} >
-							<TakePhotoComponent 
-								fuente={'camPerfil.png'} 
-								border={50} ancho={!imagen ?a :b} alto={!imagen ?a :b} 
-								updateImagen={(photo) => {this.setState({photo, imagen:true})}} 
-								img1={(img1) => {this.setState({img1})}} 
-							/>
+						<View style={!img1 ?{height:270} :{height:120}}>
+							<View style={ imagen ?style.avatar2 :style.avatar3}>
+								<TakePhotoComponent 
+									fuente={'camPerfil.png'} 
+									ancho={!imagen ?a :b} alto={!imagen ?a :b} 
+									border={45} 
+									updateImagen={(photo) => {this.setState({photo, imagen:true})}} 
+									img1={(img1) => {this.setState({img1})}} 
+									/>
+							</View>
 						</View>
 
 						{
@@ -101,9 +106,11 @@ export default class perfilComponent extends Component{
 							  />
 							  </Lightbox>
 						}
-							<TouchableOpacity style={style.btnQr} onPress={()=>this.setState({qr:true})} > 
-								<Text style={[style.hecho, style.familia]}>mi codigo Qr</Text> 
-							</TouchableOpacity> 
+							<View style={imagen ?{left:180} :{left:60}}>
+								<TouchableOpacity style={style.btnQr} onPress={()=>this.setState({qr:true})} > 
+									<Text style={[style.hecho, style.familia]}>mi codigo Qr</Text> 
+								</TouchableOpacity> 
+							</View>
 					</View>
 					{
 						qr
@@ -140,20 +147,18 @@ export default class perfilComponent extends Component{
 						<View style={style.contenedorRegistros}>
 							<Text style={[style.atributo, style.familia]}>Ciudad</Text>
 							<View style={style.containCiudad}>	
-				            <ModalSelector
-				                data={ciudades}
-				                initValue={ciudad}
-				                
-					            font={15}
-				                onChange={(e)=> this.setState({ciudad:e.label})} 
-				                style={style.inputCiudad}
-			                 	cancelTextStyle={style.familia}
-				                sectionTextStyle={style.familia}
-				                selectTextStyle={[style.familia, {color:'#8F9093',textAlign:'left'}]}
-				                optionTextStyle={style.familia}
-				            />
-				             
-		                        
+								<ModalSelector
+									data={ciudades}
+									initValue={ciudad}
+									font={15}
+									onChange={(e)=> this.setState({ciudad:e.label})} 
+									style={style.inputCiudad}
+									cancelTextStyle={style.familia}
+									selectStyle={{borderWidth:0}}
+									sectionTextStyle={style.familia}
+									selectTextStyle={[style.familia, {color:'#8F9093',textAlign:'left'}]}
+									optionTextStyle={style.familia}
+								/>
 				            </View>
 						</View>
 
@@ -203,7 +208,7 @@ export default class perfilComponent extends Component{
 				                color='#8F9093'
 				                font={16}
 				                onChange={(e)=> this.setState({sexo:e.label})} 
-				                style={style.inputCiudad}
+								selectStyle={{borderWidth:0}}
 				                cancelTextStyle={style.familia}
 				                sectionTextStyle={style.familia}
 				                selectTextStyle={[style.familia, {color:'#8F9093',textAlign:'left'}]}

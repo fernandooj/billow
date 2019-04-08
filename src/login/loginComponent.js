@@ -77,7 +77,7 @@ export default class LoginComponent extends Component{
 					}
 				}else{
 					if (!error) {
-						fetch(`https://graph.facebook.com/v2.12/me?fields=id,name,birthday,email,gender,picture{url}&access_token=${data.credentials.token}`)
+						fetch(`https://graph.facebook.com/v2.12/me?fields=id,name,birthday,email,gender,picture.type(large)&access_token=${data.credentials.token}`)
 				        .then((response) => response.json())
 				        .then((result) => {
 				        	let accessToken1 = null

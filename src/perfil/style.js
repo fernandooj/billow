@@ -7,6 +7,7 @@ export const style = MediaQueryStyleSheet.create({
 	},
 	familia:{
 		fontFamily:'Futura-CondensedLight', 
+		fontSize:22
 	},
 	subContenedor:{
 		width:'100%',
@@ -22,18 +23,16 @@ export const style = MediaQueryStyleSheet.create({
 		marginBottom:30
 	},
 	avatar2:{
-		// position:'absolute',
+		position:'absolute',
 		top:10,
-		// left:75,
-		// width:300,
+		left:10,
 		zIndex:10000
 	},
 	avatar3:{
 		position:'absolute',
-		top:100,
-		left:50,
-		width:200,
- 		right:"0%",
+		top:90,
+		width:300,
+ 		left:90,
 		zIndex:10000
 	},
 	perfil:{
@@ -41,18 +40,20 @@ export const style = MediaQueryStyleSheet.create({
 	},
 	contenedorRegistros:{
 		flexDirection:'row',
+		width:'100%',
 		marginTop:10,
 		zIndex:10,
+		paddingTop:0
 	},
 	btnQr:{
- 		width:110,
+ 		// width:110,
  		alignItems: 'center',
  		backgroundColor:'#94A5F3',
  		borderRadius:10,
- 		height:30,
- 		padding:4,
+ 		// height:30,
+ 		padding:18,
  		marginLeft:39,
- 		marginTop:49,
+ 		marginTop:20,
  	},
 	atributo:{
 		width:'30%',
@@ -69,9 +70,6 @@ export const style = MediaQueryStyleSheet.create({
 		borderRadius: 50,
 		paddingLeft:20,
 	},
-	inputs:{
-		
-	},
 	valor:{
 		paddingVertical:10,
 		paddingHorizontal:12, 
@@ -84,11 +82,8 @@ export const style = MediaQueryStyleSheet.create({
 		borderRadius:50,
 		width:210,
 	 	borderWidth:0,
-		height:40,
+		height:45,
 		paddingLeft:10,
-	},
-	inputCiudad:{
-		height:30,
 	},
 	disabled:{
 		color:'red'
@@ -129,11 +124,11 @@ export const style = MediaQueryStyleSheet.create({
 			height:90,
 			marginBottom:10
 		},
-		avatar2:{
-			top:65,
-			left:53,
-			zIndex:100
-		},
+		// avatar2:{
+		// 	top:65,
+		// 	left:53,
+		// 	zIndex:100
+		// },
 		valor:{
 			width:180,
 			paddingVertical:7,

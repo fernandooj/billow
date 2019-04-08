@@ -713,8 +713,8 @@ export const style = MediaQueryStyleSheet.create({
 	"@media (max-device-width: 380)": {
 		nombrePlanIos:{
 			fontSize:17,
-			left:35, 
-			lineHeight: 19
+			left:55, 
+			// lineHeight: 19
 		},
 	}
 },{

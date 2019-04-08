@@ -84,6 +84,8 @@ export default class TakePhotoComponent extends Component{
 			// chooseFromLibraryButtonTitle:'Buscar en imagenes',
 			compressImageMaxWidth: 800,
 			compressImageMaxHeight: 800,
+			width: 800,
+  			height: 800,
 			cropping: true,
 			forgeJpg: true,
 		};
@@ -120,6 +122,8 @@ export default class TakePhotoComponent extends Component{
 			// chooseFromLibraryButtonTitle:'Buscar en imagenes',
 			compressImageMaxWidth: 800,
 			compressImageMaxHeight: 800,
+			width: 800,
+  			height: 800,
 			cropping: true,
 			forgeJpg: true,
 		};

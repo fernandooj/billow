@@ -53,6 +53,8 @@ target 'billow' do
 
   pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
 end
 
 post_install do |installer|
